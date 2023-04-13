@@ -21,9 +21,7 @@ return {
             ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
           },
         },
-        preview = {
-          hide_on_startup = true, -- hide previewer when picker starts
-        },
+        layout_strategy = "vertical",
       },
     },
   },
