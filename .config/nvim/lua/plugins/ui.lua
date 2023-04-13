@@ -1,45 +1,8 @@
 return {
+  -- use buffers  instead of tabs
   {
     "akinsho/bufferline.nvim",
     enabled = false,
-    -- opts = {
-    --   options = {
-    --     show_buffer_close_icons = false,
-    --   },
-    -- },
-  },
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   dependencies = "romgrk/barbar.nvim",
-  -- },
-  {
-    "romgrk/barbar.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    init = function()
-      vim.g.barbar_auto_setup = true
-    end,
-    opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      -- closable = false,
-      -- animation = true,
-      -- insert_at_start = true,
-      auto_hide = true,
-      -- fix icon of pinned tabs
-      icon_pinned = "車",
-
-      -- Set the filetypes which barbar will offset itself for
-      sidebar_filetypes = {
-        -- Use the default values: {event = 'BufWinLeave', text = nil}
-        -- NvimTree = true,
-        -- Or, specify the text used for the offset:
-        -- undotree = { text = "undotree" },
-        -- Or, specify the event which the sidebar executes when leaving:
-        ["neo-tree"] = { event = "BufWipeout" },
-        -- Or, specify both
-        -- Outline = { event = "BufWinLeave", text = "symbols-outline" },
-      },
-    },
-    version = "^1.0.0", -- optional: only update when a new 1.x version is released}
   },
   {
     "nvim-telescope/telescope.nvim",
