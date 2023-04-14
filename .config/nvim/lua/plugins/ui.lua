@@ -1,5 +1,5 @@
 return {
-  -- use buffers  instead of tabs
+  -- the real Vim 🥷 doesn't use tabs!
   {
     "akinsho/bufferline.nvim",
     enabled = false,
@@ -8,7 +8,7 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
-        -- path_display = { truncate = 3 }
+        -- show me the filename first
         path_display = function(opts, path)
           local tail = require("telescope.utils").path_tail(path)
           return string.format("%s -- %s", tail, path)
