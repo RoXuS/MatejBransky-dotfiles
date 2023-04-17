@@ -8,6 +8,12 @@ return {
   },
   {
     "navarasu/onedark.nvim",
+    opts = function(_, opts)
+      opts.highlights = {
+        -- I like VS Code colors for git symbols
+        ["NeoTreeGitUntracked"] = { fg = "$green", fmt = "none" },
+      }
+    end,
   },
   {
     "LazyVim/LazyVim",
@@ -19,6 +25,27 @@ return {
   {
     "akinsho/bufferline.nvim",
     enabled = false,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      default_component_configs = {
+        name = {
+          -- I like to keep git status visualized just by letter-symbols
+          use_git_status_colors = false,
+        },
+        git_status = {
+          -- I like VS Code-like symbols with simple letters
+          symbols = {
+            renamed = "R",
+            untracked = "U",
+            modified = "M",
+            deleted = "D",
+            conflict = "C",
+          },
+        },
+      },
+    },
   },
   {
     "nvim-telescope/telescope.nvim",
