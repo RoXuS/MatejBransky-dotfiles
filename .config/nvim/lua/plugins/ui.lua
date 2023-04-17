@@ -1,4 +1,20 @@
 return {
+  -- finally working theme switcher
+  {
+    "cormacrelf/dark-notify",
+    init = function()
+      require("dark_notify").run()
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "onedark",
+    },
+  },
   -- the real Vim 🥷 doesn't use tabs!
   {
     "akinsho/bufferline.nvim",
@@ -9,7 +25,7 @@ return {
     opts = {
       defaults = {
         -- show me the filename first
-        path_display = function(opts, path)
+        path_display = function(_, path)
           local tail = require("telescope.utils").path_tail(path)
           return string.format("%s -- %s", tail, path)
         end,
