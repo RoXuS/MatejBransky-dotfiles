@@ -14,4 +14,16 @@ return {
       }))
     end,
   },
+  {
+    "folke/noice.nvim",
+    opts = {
+      lsp = {
+        -- disable auto popup of function documenation
+        -- https://github.com/LazyVim/LazyVim/discussions/345
+        signature = {
+          auto_open = false,
+        },
+      },
+    },
+  },
 }
