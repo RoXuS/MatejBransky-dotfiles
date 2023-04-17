@@ -39,6 +39,13 @@ return {
         },
         layout_strategy = "vertical",
       },
+      pickers = {
+        lsp_references = {
+          -- prioritize file paths in the result (=> disable inline preview)
+          -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
+          show_line = false,
+        },
+      },
     },
   },
 }
