@@ -50,6 +50,35 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
+local keys = create_pane_mappings({
+	mods = {
+		focus = "SUPER",
+		split = "CTRL|SUPER",
+		resize = "META|SUPER",
+	},
+	keys = {
+		up = "k",
+		down = "j",
+		left = "h",
+		right = "l",
+	},
+})
+
+table.insert(keys, {
+	key = "P",
+	mods = "CTRL",
+	action = wezterm.action.QuickSelectArgs({
+		patterns = {
+			"https?://\\S+",
+		},
+		action = wezterm.action_callback(function(window, pane)
+			local url = window:get_selection_text_for_pane(pane)
+			wezterm.log_info("opening: " .. url)
+			wezterm.open_with(url)
+		end),
+	}),
+})
+
 return {
 	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
 	font_size = 14,
@@ -58,17 +87,5 @@ return {
 	initial_rows = 40,
 	use_fancy_tab_bar = false,
 	window_decorations = "RESIZE",
-	keys = create_pane_mappings({
-		mods = {
-			focus = "SUPER",
-			split = "CTRL|SUPER",
-			resize = "META|SUPER",
-		},
-		keys = {
-			up = "k",
-			down = "j",
-			left = "h",
-			right = "l",
-		},
-	}),
+	keys = keys,
 }
