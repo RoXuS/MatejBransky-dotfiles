@@ -21,6 +21,27 @@ return {
       colorscheme = "onedark",
     },
   },
+  -- describe my keybindings
+  {
+    "folke/which-key.nvim",
+    opts = function()
+      require("which-key").register({
+        ["<leader>y"] = {
+          name = "use system clipboard",
+        },
+        ["<leader>Y"] = {
+          name = "use system clipboard (line)",
+        },
+        ["<leader>d"] = {
+          name = "delete to black hole",
+        },
+        ["<leader>t"] = {
+          name = "+Terminal",
+        },
+        ["<leader>k"] = "Show diag. in a floating window.",
+      })
+    end,
+  },
   -- the real Vim 🥷 doesn't use tabs!
   {
     "akinsho/bufferline.nvim",
@@ -70,6 +91,9 @@ return {
         lsp_references = {
           -- prioritize file paths in the result (=> disable inline preview)
           -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
+          show_line = false,
+        },
+        lsp_definitions = {
           show_line = false,
         },
       },
