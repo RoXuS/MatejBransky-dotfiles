@@ -17,7 +17,7 @@ export PATH="$PNPM_HOME:$PATH"
 eval "$(zoxide init zsh)"
 
 # Created by `pipx` on 2023-03-24 18:21:46
-export PATH="$PATH:/Users/Matej.Bransky/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
