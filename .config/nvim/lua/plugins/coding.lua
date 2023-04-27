@@ -1,9 +1,5 @@
 return {
   {
-    "echasnovski/mini.pairs",
-    enabled = false,
-  },
-  {
     "neovim/nvim-lspconfig",
     keys = {
       { "<leader>k", vim.diagnostic.open_float, mode = "n" },
@@ -41,5 +37,9 @@ return {
         },
       },
     },
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {},
   },
 }
