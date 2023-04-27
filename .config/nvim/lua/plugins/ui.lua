@@ -29,9 +29,6 @@ return {
         ["<leader>d"] = {
           name = "delete to black hole",
         },
-        ["<leader>t"] = {
-          name = "+Terminal",
-        },
         ["<leader>k"] = "Show diag. in a floating window.",
       })
     end,
