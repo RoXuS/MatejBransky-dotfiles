@@ -5,6 +5,14 @@ return {
       { "<leader>k", vim.diagnostic.open_float, mode = "n" },
     },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "css",
+      },
+    },
+  },
   -- Leave my Enter, Tab and arrow keys alone!
   {
     "hrsh7th/nvim-cmp",

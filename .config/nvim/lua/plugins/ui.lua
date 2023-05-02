@@ -21,6 +21,22 @@ return {
       colorscheme = "onedark",
     },
   },
+  -- allow the normal mode in floating windows
+  {
+    "stevearc/dressing.nvim",
+    opts = {
+      input = {
+        insert_only = false,
+      },
+    },
+  },
+  -- I need the normal mode in editing popups
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
+    },
+  },
   -- describe my keybindings
   {
     "folke/which-key.nvim",
