@@ -73,6 +73,30 @@ return {
           },
         },
       },
+      window = {
+        mappings = {
+          -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
+          -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
+          ["h"] = function(state)
+            local node = state.tree:get_node()
+            if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+              state.commands.toggle_node(state)
+            else
+              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            end
+          end,
+          ["l"] = function(state)
+            local node = state.tree:get_node()
+            if node.type == "directory" or node:has_children() then
+              if not node:is_expanded() then
+                state.commands.toggle_node(state)
+              else
+                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+              end
+            end
+          end,
+        },
+      },
     },
   },
   {
@@ -95,9 +119,9 @@ return {
         layout_strategy = "vertical",
       },
       pickers = {
+        -- prioritize file paths in the result (=> disable inline preview)
+        -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
         lsp_references = {
-          -- prioritize file paths in the result (=> disable inline preview)
-          -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
           show_line = false,
         },
         lsp_definitions = {
