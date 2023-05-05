@@ -2,7 +2,7 @@ local function getTelescopeOpts(state, path)
   return {
     cwd = path,
     search_dirs = { path },
-    attach_mappings = function(prompt_bufnr, map)
+    attach_mappings = function(prompt_bufnr)
       local actions = require("telescope.actions")
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
@@ -13,6 +13,7 @@ local function getTelescopeOpts(state, path)
           filename = selection[1]
         end
         -- any way to open the file without triggering auto-close event of neo-tree?
+        ---@diagnostic disable-next-line: missing-parameter
         require("neo-tree.sources.filesystem").navigate(state, state.path, filename)
       end)
       return true
@@ -97,6 +98,8 @@ return {
       },
       window = {
         mappings = {
+          -- remove unused mapping so I can use "tf" and "tg" mappings
+          ["t"] = false,
           -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
           ["h"] = function(state)
@@ -148,8 +151,14 @@ return {
     opts = {
       defaults = {
         -- show me the filename first
-        path_display = function(_, path)
-          local tail = require("telescope.utils").path_tail(path)
+        path_display = function(_, rawPath)
+          local utils = require("telescope.utils")
+          local tail = utils.path_tail(rawPath)
+          local path = utils.transform_path({
+            path_display = {
+              absolute = 0,
+            },
+          }, rawPath)
           return string.format("%s -- %s", tail, path)
         end,
         mappings = {
@@ -163,6 +172,11 @@ return {
         layout_strategy = "vertical",
       },
       pickers = {
+        -- Sorts all buffers after most recent used.
+        -- Not just the current and last one.
+        buffers = {
+          sort_mru = true,
+        },
         -- prioritize file paths in the result (=> disable inline preview)
         -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
         lsp_references = {
