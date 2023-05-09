@@ -80,6 +80,17 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      event_handlers = {
+        -- allow quick navigation in the file explorer as in the file buffer
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.cmd([[
+              setlocal relativenumber
+            ]])
+          end,
+        },
+      },
       default_component_configs = {
         name = {
           -- I like to keep git status visualized just by letter-symbols
