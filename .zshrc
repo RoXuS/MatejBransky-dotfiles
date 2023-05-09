@@ -20,6 +20,7 @@ eval "$(zoxide init zsh)"
 export PATH="$PATH:$HOME/.local/bin"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 alias lazydotfiles='/opt/homebrew/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 bindkey -v
