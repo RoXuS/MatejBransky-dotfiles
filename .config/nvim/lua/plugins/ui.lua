@@ -202,6 +202,7 @@ return {
       },
     },
   },
+  -- fuzzy finder prioritizing filenames and smartcase search
   {
     "natecraddock/telescope-zf-native.nvim",
     config = function()
