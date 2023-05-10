@@ -1,7 +1,7 @@
 local keys = require("keymaps")
 local ui = require("ui")
 
-function object_assign(t1, t2)
+local function object_assign(t1, t2)
 	for key, value in pairs(t2) do
 		t1[key] = value
 	end
