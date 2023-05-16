@@ -51,4 +51,7 @@ return {
     "NvChad/nvim-colorizer.lua",
     opts = {},
   },
+  {
+    "jghauser/follow-md-links.nvim",
+  },
 }
