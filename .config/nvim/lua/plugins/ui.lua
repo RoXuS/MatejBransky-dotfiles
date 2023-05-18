@@ -78,6 +78,51 @@ return {
     enabled = false,
   },
   {
+    -- Master the navigation between main files
+    -- https://youtu.be/Qnos8aApa9g
+    --
+    -- I forked it because of the important PR which fixes removing the file
+    -- https://github.com/MatejBransky/harpoon/pull/1
+    "MatejBransky/harpoon",
+    init = function()
+      local whichKey = require("which-key")
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      vim.keymap.set("n", "<leader>m", mark.toggle_file)
+
+      whichKey.register({
+        ["<leader>m"] = "Toggle harpoon mark",
+      })
+
+      vim.keymap.set("n", "<M-h>", ui.toggle_quick_menu)
+
+      vim.keymap.set("n", "<M-q>", function()
+        ui.nav_file(1)
+      end)
+      vim.keymap.set("n", "<M-w>", function()
+        ui.nav_file(2)
+      end)
+      vim.keymap.set("n", "<M-e>", function()
+        ui.nav_file(3)
+      end)
+      vim.keymap.set("n", "<M-r>", function()
+        ui.nav_file(4)
+      end)
+      vim.keymap.set("n", "<M-t>", function()
+        ui.nav_file(5)
+      end)
+
+      require("telescope").load_extension("harpoon")
+    end,
+    opts = {
+      tabline = false,
+      menu = {
+        width = 100,
+      },
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       event_handlers = {
@@ -156,6 +201,31 @@ return {
             local path = node:get_id()
             require("telescope.builtin").live_grep(getTelescopeOpts(state, path))
           end,
+        },
+        components = {
+          -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#harpoon-index
+          harpoon_index = function(config, node)
+            local Marked = require("harpoon.mark")
+            local path = node:get_id()
+            local succuss, index = pcall(Marked.get_index_of, path)
+            if succuss and index and index > 0 then
+              return {
+                text = string.format(" → %d", index), -- <-- Add your favorite harpoon like arrow here
+                highlight = config.highlight or "NeoTreeDirectoryIcon",
+              }
+            else
+              return {}
+            end
+          end,
+        },
+        renderers = {
+          file = {
+            { "icon" },
+            { "name", use_git_status_colors = true },
+            { "harpoon_index" }, --> This is what actually adds the component in where you want it
+            { "diagnostics" },
+            { "git_status", highlight = "NeoTreeDimText" },
+          },
         },
       },
     },
