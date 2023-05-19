@@ -179,6 +179,10 @@ return {
         },
       },
       filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
         -- change the filter into a full path search with space as an implicit `".*"`,
         -- so `fi init` will match: `./sources/filesystem/init.lua`
         find_by_full_path_words = true,
