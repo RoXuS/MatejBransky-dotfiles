@@ -58,7 +58,7 @@ local keys = create_pane_mappings({
 
 table.insert(keys, {
 	key = "P",
-	mods = "CTRL",
+	mods = "SUPER",
 	action = wezterm.action.QuickSelectArgs({
 		patterns = {
 			"https?://\\S+",
@@ -85,6 +85,18 @@ table.insert(keys, {
 			end
 		end),
 	}),
+})
+
+table.insert(keys, {
+	key = "<",
+	mods = "SUPER",
+	action = wezterm.action.MoveTabRelative(-1),
+})
+
+table.insert(keys, {
+	key = ">",
+	mods = "SUPER",
+	action = wezterm.action.MoveTabRelative(1),
 })
 
 return keys
