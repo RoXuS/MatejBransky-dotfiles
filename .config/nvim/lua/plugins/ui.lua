@@ -283,4 +283,11 @@ return {
       require("telescope").load_extension("zf-native")
     end,
   },
+  -- symbols outline
+  {
+    "simrat39/symbols-outline.nvim",
+    opts = {
+      show_relative_numbers = true,
+    },
+  },
 }
