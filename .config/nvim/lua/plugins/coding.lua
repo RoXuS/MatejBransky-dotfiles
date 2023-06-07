@@ -26,6 +26,17 @@ return {
         ["<Up>"] = cmp.config.disable,
         ["<Down>"] = cmp.config.disable,
       }))
+      opts.sources = cmp.config.sources({
+        {
+          name = "nvim_lsp",
+          entry_filter = function(entry)
+            return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+          end,
+        },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      })
     end,
   },
   -- Leave my Tab key alone!
