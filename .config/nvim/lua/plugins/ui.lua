@@ -231,6 +231,20 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    keys = {
+      {
+        "<leader>fh",
+        function()
+          require("telescope.builtin").find_files({
+            hidden = true,
+            no_ignore = true,
+            no_ignore_parent = true,
+            find_command = { "rg", "--files", "-g", "!{.git,node_modules,.gradle,tmp,dist,test-results}" },
+          })
+        end,
+        desc = "Find Files (hidden included)",
+      },
+    },
     opts = {
       defaults = {
         -- show me the filename first
