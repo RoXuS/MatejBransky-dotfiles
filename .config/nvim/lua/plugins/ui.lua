@@ -53,13 +53,6 @@ return {
       },
     },
   },
-  -- I need the normal mode in editing popups
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
-    },
-  },
   -- describe my keybindings
   {
     "folke/which-key.nvim",
@@ -125,6 +118,8 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      -- I need the normal mode in editing popups
+      use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
       event_handlers = {
         -- allow quick navigation in the file explorer as in the file buffer
         {
