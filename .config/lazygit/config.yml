@@ -1,0 +1,9 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse # set to `default` to have no background colour
+      - bold
+    selectedRangeBgColor:
+      - reverse
+os:
+  editPreset: "nvim"

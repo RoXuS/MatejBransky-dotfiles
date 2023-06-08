@@ -16,6 +16,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 eval "$(zoxide init zsh)"
 
+export XDG_CONFIG_HOME="$HOME/.config"
 # Created by `pipx` on 2023-03-24 18:21:46
 export PATH="$PATH:$HOME/.local/bin"
 
