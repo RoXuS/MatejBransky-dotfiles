@@ -17,12 +17,18 @@ export PATH="$PNPM_HOME:$PATH"
 eval "$(zoxide init zsh)"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
 # Created by `pipx` on 2023-03-24 18:21:46
 export PATH="$PATH:$HOME/.local/bin"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias lazydotfiles='/opt/homebrew/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+gbd() {
+  # https://stackoverflow.com/a/33548037/10735867
+  git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
+}
 
 bindkey -v
 bindkey ^R history-incremental-search-backward 
