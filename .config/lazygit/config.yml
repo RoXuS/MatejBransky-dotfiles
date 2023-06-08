@@ -1,4 +1,5 @@
 gui:
+  # fix colors for selected line
   theme:
     selectedLineBgColor:
       - reverse # set to `default` to have no background colour
@@ -6,4 +7,5 @@ gui:
     selectedRangeBgColor:
       - reverse
 os:
-  editPreset: "nvim"
+  # source: https://github.com/LazyVim/LazyVim/discussions/543#discussioncomment-5808573
+  edit: "nvim --server $NVIM --remote-tab {{filename}}"
