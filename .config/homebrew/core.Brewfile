@@ -29,6 +29,7 @@ brew "tmux"
 brew "wget"
 brew "zoxide"
 brew "diff-so-fancy"
+brew "git-trim"
 
 # Dependencies for programming languages and the like
 # --------------------------------------------------

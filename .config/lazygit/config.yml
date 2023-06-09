@@ -22,3 +22,11 @@ customCommands:
       - type: confirm
         title: "Action: git reset --hard origin/{{.CheckedOutBranch.Name}}"
         body: "Are you sure you want to reset to the remote branch?"
+  - key: "<c-d>"
+    description: "Trims your tracking branches whose upstream branches are merged or stray"
+    command: "git trim --no-confirm"
+    context: localBranches
+    prompts:
+      - type: confirm
+        title: "Trims your tracking branches whose upstream branches are merged or stray"
+        body: "Are you sure you want to delete local branches whose upstream branches are merged or stray?"
