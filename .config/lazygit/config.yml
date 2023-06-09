@@ -16,7 +16,7 @@ git:
 customCommands:
   - key: "<c-d>"
     description: "Reset to the remote branch"
-    command: echo 'git reset --hard origin/{{.CheckedOutBranch.Name}}'
+    command: "git reset --hard origin/{{.CheckedOutBranch.Name}}"
     context: files
     prompts:
       - type: confirm
