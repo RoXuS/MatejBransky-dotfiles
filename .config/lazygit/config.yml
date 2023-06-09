@@ -9,3 +9,13 @@ gui:
 os:
   # source: https://github.com/LazyVim/LazyVim/discussions/543#discussioncomment-5808573
   edit: "nvim --server $NVIM --remote-tab {{filename}}"
+
+customCommands:
+  - key: "<c-d>"
+    description: "Reset to the remote branch"
+    command: echo 'git reset --hard origin/{{.CheckedOutBranch.Name}}'
+    context: files
+    prompts:
+      - type: confirm
+        title: "Action: git reset --hard origin/{{.CheckedOutBranch.Name}}"
+        body: "Are you sure you want to reset to the remote branch?"
