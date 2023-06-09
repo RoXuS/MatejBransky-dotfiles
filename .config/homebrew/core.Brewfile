@@ -28,6 +28,7 @@ brew "ripgrep"
 brew "tmux"
 brew "wget"
 brew "zoxide"
+brew "diff-so-fancy"
 
 # Dependencies for programming languages and the like
 # --------------------------------------------------

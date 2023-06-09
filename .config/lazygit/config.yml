@@ -9,7 +9,10 @@ gui:
 os:
   # source: https://github.com/LazyVim/LazyVim/discussions/543#discussioncomment-5808573
   edit: "nvim --server $NVIM --remote-tab {{filename}}"
-
+git:
+  paging:
+    colorArg: always
+    useConfig: true
 customCommands:
   - key: "<c-d>"
     description: "Reset to the remote branch"
