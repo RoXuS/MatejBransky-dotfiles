@@ -6,8 +6,3 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
-
--- fixes lazygit-nvim mappings
--- https://github.com/LazyVim/LazyVim/issues/905#issuecomment-1583360016
-vim.keymap.del("t", "<c-j>")
-vim.keymap.del("t", "<c-k>")
