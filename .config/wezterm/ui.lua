@@ -9,58 +9,37 @@ local function resolve_appearance(options)
 	end
 end
 
-local tab_bar = resolve_appearance({
-	light = {
-		background = "#f0f0f0",
+local function resolve_tab_bar(options)
+	local theme = resolve_appearance({ light = options.lightTheme, dark = options.darkTheme })
+
+	local output = {
+		background = theme.bg,
 
 		active_tab = {
-			bg_color = "#fcfcfc",
-			fg_color = "#404040",
+			bg_color = theme.bg,
+			fg_color = theme.fg_active,
 		},
 		inactive_tab = {
-			bg_color = "#f0f0f0",
-			fg_color = "#999",
+			bg_color = theme.bg,
+			fg_color = theme.fg_inactive,
 		},
 		new_tab = {
-			bg_color = "#f0f0f0",
-			fg_color = "#000",
+			bg_color = theme.bg,
+			fg_color = theme.fg_inactive,
 		},
 
 		inactive_tab_hover = {
-			bg_color = "#fcfcfc",
-			fg_color = "#000",
+			bg_color = theme.bg,
+			fg_color = theme.fg_hover,
 		},
 		new_tab_hover = {
-			bg_color = "#ffffff",
-			fg_color = "#000",
+			bg_color = theme.bg,
+			fg_color = theme.fg_hover,
 		},
-	},
-	dark = {
-		background = "#282c34",
+	}
 
-		active_tab = {
-			bg_color = "#3b3f4c",
-			fg_color = "#abb2bf",
-		},
-		inactive_tab = {
-			bg_color = "#31353f",
-			fg_color = "#abb2bf",
-		},
-		new_tab = {
-			bg_color = "#282c34",
-			fg_color = "#abb2bf",
-		},
-
-		inactive_tab_hover = {
-			bg_color = "#3b3f4c",
-			fg_color = "#abb2bf",
-		},
-		new_tab_hover = {
-			bg_color = "#3b3f4c",
-			fg_color = "#abb2bf",
-		},
-	},
-})
+	return output
+end
 
 return {
 	color_scheme = resolve_appearance({
@@ -72,7 +51,20 @@ return {
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = false,
 	colors = {
-		tab_bar = tab_bar,
+		tab_bar = resolve_tab_bar({
+			lightTheme = {
+				bg = "#fcfcfc",
+				fg_inactive = "#a0a1a7",
+				fg_active = "#383a42",
+				fg_hover = "#818387",
+			},
+			darkTheme = {
+				bg = "#282c34",
+				fg_inactive = "#848b98",
+				fg_active = "#e2b86b",
+				fg_hover = "#abb2bf",
+			},
+		}),
 	},
 	initial_cols = 120,
 	initial_rows = 40,
