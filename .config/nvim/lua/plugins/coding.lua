@@ -1,11 +1,5 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    keys = {
-      { "<leader>k", vim.diagnostic.open_float, mode = "n" },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {

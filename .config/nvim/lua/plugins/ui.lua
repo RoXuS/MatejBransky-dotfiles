@@ -53,18 +53,6 @@ return {
       },
     },
   },
-  -- describe my keybindings
-  {
-    "folke/which-key.nvim",
-    opts = function()
-      require("which-key").register({
-        ["<leader>d"] = {
-          name = "delete to black hole",
-        },
-        ["<leader>k"] = "Show diag. in a floating window.",
-      })
-    end,
-  },
   -- the real Vim 🥷 doesn't use tabs!
   {
     "akinsho/bufferline.nvim",
