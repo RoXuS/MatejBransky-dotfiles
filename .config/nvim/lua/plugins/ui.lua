@@ -72,10 +72,6 @@ return {
 
       vim.keymap.set("n", "<leader>m", mark.toggle_file)
 
-      whichKey.register({
-        ["<leader>m"] = "Toggle harpoon mark",
-      })
-
       vim.keymap.set("n", "<M-h>", ui.toggle_quick_menu)
 
       vim.keymap.set("n", "<M-q>", function()
@@ -93,6 +89,16 @@ return {
       vim.keymap.set("n", "<M-t>", function()
         ui.nav_file(5)
       end)
+
+      whichKey.register({
+        ["<leader>m"] = "Toggle harpoon mark",
+        ["<M-h>"] = "Harpoon list",
+        ["<M-q>"] = "First harpoon file",
+        ["<M-w>"] = "Second harpoon file",
+        ["<M-e>"] = "Third harpoon file",
+        ["<M-r>"] = "Fourth harpoon file",
+        ["<M-t>"] = "Fifth harpoon file",
+      })
 
       require("telescope").load_extension("harpoon")
     end,
