@@ -111,6 +111,27 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      -- Floating file explorer
+      {
+        "<leader>e",
+        function()
+          require("neo-tree.command").execute({
+            position = "float",
+            dir = require("lazyvim.util").get_root(),
+            reveal = true,
+          })
+        end,
+        desc = "Explorer NeoTree (root dir)",
+      },
+      {
+        "<leader>E",
+        function()
+          require("neo-tree.command").execute({ position = "float", dir = vim.loop.cwd() })
+        end,
+        desc = "Explorer NeoTree (cwd)",
+      },
+    },
     opts = {
       -- I need the normal mode in editing popups
       use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
