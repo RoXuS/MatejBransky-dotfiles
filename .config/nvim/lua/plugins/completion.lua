@@ -27,7 +27,7 @@ return {
     end,
   },
 
-  -- Leave my Tab key alone!
+  -- Snippets
   {
     "L3MON4D3/LuaSnip",
     keys = function()
@@ -57,7 +57,7 @@ return {
     },
   },
 
-  -- Better snippets
+  -- Better snippet editor
   {
     "chrisgrieser/nvim-scissors",
     dependencies = "nvim-telescope/telescope.nvim", -- optional
