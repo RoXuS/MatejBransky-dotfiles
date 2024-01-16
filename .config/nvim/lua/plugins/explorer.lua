@@ -1,3 +1,41 @@
+local renderer = require("neo-tree.ui.renderer")
+local myKeys = require("myKeys")
+
+local indexOf = function(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil
+end
+
+local getSiblings = function(state, node)
+  local parent = state.tree:get_node(node:get_parent_id())
+  local siblings = parent:get_child_ids()
+  return siblings
+end
+
+local nextSibling = function(state)
+  local node = state.tree:get_node()
+  local siblings = getSiblings(state, node)
+  if not node.is_last_child then
+    local currentIndex = indexOf(siblings, node.id)
+    local nextIndex = siblings[currentIndex + 1]
+    renderer.focus_node(state, nextIndex)
+  end
+end
+
+local prevSibling = function(state)
+  local node = state.tree:get_node()
+  local siblings = getSiblings(state, node)
+  local currentIndex = indexOf(siblings, node.id)
+  if currentIndex > 1 then
+    local nextIndex = siblings[currentIndex - 1]
+    renderer.focus_node(state, nextIndex)
+  end
+end
+
 local function getTelescopeOpts(state, path)
   return {
     cwd = path,
@@ -22,107 +60,31 @@ local function getTelescopeOpts(state, path)
 end
 
 return {
-  -- finally working theme switcher
-  {
-    "cormacrelf/dark-notify",
-    init = function()
-      require("dark_notify").run()
-    end,
-  },
-  {
-    "navarasu/onedark.nvim",
-    opts = function(_, opts)
-      opts.highlights = {
-        -- I like VS Code colors for git symbols
-        ["NeoTreeGitUntracked"] = { fg = "$green", fmt = "none" },
-      }
-    end,
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "onedark",
-    },
-  },
-  -- allow the normal mode in floating windows
-  {
-    "stevearc/dressing.nvim",
-    opts = {
-      input = {
-        insert_only = false,
-      },
-    },
-  },
-  -- the real Vim 🥷 doesn't use tabs!
-  {
-    "akinsho/bufferline.nvim",
-    enabled = false,
-  },
-  {
-    -- Master the navigation between main files
-    -- https://youtu.be/Qnos8aApa9g
-    --
-    -- I forked it because of the important PR which fixes removing the file
-    -- https://github.com/MatejBransky/harpoon/pull/1
-    "MatejBransky/harpoon",
-    init = function()
-      local whichKey = require("which-key")
-      local mark = require("harpoon.mark")
-      local ui = require("harpoon.ui")
-
-      vim.keymap.set("n", "<leader>m", mark.toggle_file)
-
-      vim.keymap.set("n", "<M-h>", ui.toggle_quick_menu)
-
-      vim.keymap.set("n", "<M-q>", function()
-        ui.nav_file(1)
-      end)
-      vim.keymap.set("n", "<M-w>", function()
-        ui.nav_file(2)
-      end)
-      vim.keymap.set("n", "<M-e>", function()
-        ui.nav_file(3)
-      end)
-      vim.keymap.set("n", "<M-r>", function()
-        ui.nav_file(4)
-      end)
-      vim.keymap.set("n", "<M-t>", function()
-        ui.nav_file(5)
-      end)
-
-      whichKey.register({
-        ["<leader>m"] = "Toggle harpoon mark",
-        ["<M-h>"] = "Harpoon list",
-        ["<M-q>"] = "First harpoon file",
-        ["<M-w>"] = "Second harpoon file",
-        ["<M-e>"] = "Third harpoon file",
-        ["<M-r>"] = "Fourth harpoon file",
-        ["<M-t>"] = "Fifth harpoon file",
-      })
-
-      require("telescope").load_extension("harpoon")
-    end,
-    opts = {
-      tabline = false,
-      menu = {
-        width = 100,
-      },
-    },
-  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
+      {
+        "-",
+        function()
+          require("neo-tree.command").execute({
+            position = "current",
+            reveal = true,
+            reveal_force_cwd = true,
+          })
+        end,
+      },
       -- Floating file explorer
       {
-        "<leader>e",
+        myKeys.explorer.floatingExplorer.shortcut,
         function()
           require("neo-tree.command").execute({
             position = "float",
-            dir = require("lazyvim.util").get_root(),
+            -- dir = require("lazyvim.util").root(),
             reveal = true,
+            reveal_force_cwd = true,
           })
         end,
-        desc = "Explorer NeoTree (root dir)",
+        desc = myKeys.explorer.floatingExplorer.desc,
       },
       {
         "<leader>E",
@@ -130,6 +92,37 @@ return {
           require("neo-tree.command").execute({ position = "float", dir = vim.loop.cwd() })
         end,
         desc = "Explorer NeoTree (cwd)",
+      },
+      {
+        "<leader>fe",
+        function()
+          require("neo-tree.command").execute({
+            position = "left",
+            -- dir = require("lazyvim.util").root(),
+            reveal = true,
+            -- reveal_force_cwd = true,
+          })
+        end,
+        desc = "Explorer in the sidebar",
+      },
+      {
+        myKeys.explorer.showSidebarExplorer.shortcut,
+        function()
+          require("neo-tree.command").execute({
+            action = "focus",
+            position = "left",
+          })
+        end,
+        desc = myKeys.explorer.showSidebarExplorer.desc,
+      },
+      {
+        myKeys.explorer.hideSidebarExplorer.shortcut,
+        function()
+          require("neo-tree.command").execute({
+            action = "close",
+          })
+        end,
+        desc = myKeys.explorer.hideSidebarExplorer.desc,
       },
     },
     opts = {
@@ -164,8 +157,14 @@ return {
       },
       window = {
         mappings = {
-          -- remove unused mapping so I can use "tf" and "tg" mappings
+          -- remove unused mapping
+          ["s"] = false,
+          ["S"] = false,
           ["t"] = false,
+          [myKeys.explorer.nextSibling.shortcut] = nextSibling,
+          [myKeys.explorer.prevSibling.shortcut] = prevSibling,
+          [myKeys.explorer.split.shortcut] = "split_with_window_picker",
+          [myKeys.explorer.vsplit.shortcut] = "vsplit_with_window_picker",
           -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
           ["h"] = function(state)
@@ -196,12 +195,16 @@ return {
         -- change the filter into a full path search with space as an implicit `".*"`,
         -- so `fi init` will match: `./sources/filesystem/init.lua`
         find_by_full_path_words = true,
+        follow_current_file = {
+          enabled = false,
+          leave_dirs_open = true,
+        },
         window = {
           mappings = {
             -- Find/grep for a file under the current node using Telescope and select it.
             -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#find-with-telescope
-            ["tf"] = "telescope_find",
-            ["tg"] = "telescope_grep",
+            [myKeys.explorer.findInSelected.shortcut] = "telescope_find",
+            [myKeys.explorer.grepInSelected.shortcut] = "telescope_grep",
           },
         },
         commands = {
@@ -210,6 +213,7 @@ return {
             local path = node:get_id()
             require("telescope.builtin").find_files(getTelescopeOpts(state, path))
           end,
+
           telescope_grep = function(state)
             local node = state.tree:get_node()
             local path = node:get_id()
@@ -244,74 +248,20 @@ return {
       },
     },
   },
+
+  -- Support prompts the user to pick a window for opening the file
   {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      {
-        "<leader>fh",
-        function()
-          require("telescope.builtin").find_files({
-            hidden = true,
-            no_ignore = true,
-            no_ignore_parent = true,
-            find_command = { "rg", "--files", "-g", "!{.git,node_modules,.gradle,tmp,dist,test-results}" },
-          })
-        end,
-        desc = "Find Files (hidden included)",
-      },
-    },
-    opts = {
-      defaults = {
-        -- show me the filename first
-        path_display = function(_, rawPath)
-          local utils = require("telescope.utils")
-          local tail = utils.path_tail(rawPath)
-          local path = utils.transform_path({
-            path_display = {
-              absolute = 0,
-            },
-          }, rawPath)
-          return string.format("%s -- %s", tail, path)
-        end,
-        mappings = {
-          n = {
-            ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
-          },
-          i = {
-            ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
-          },
-        },
-        layout_strategy = "vertical",
-      },
-      pickers = {
-        -- Sorts all buffers after most recent used.
-        -- Not just the current and last one.
-        buffers = {
-          sort_mru = true,
-        },
-        -- prioritize file paths in the result (=> disable inline preview)
-        -- https://github.com/nvim-telescope/telescope.nvim/issues/2121
-        lsp_references = {
-          show_line = false,
-        },
-        lsp_definitions = {
-          show_line = false,
-        },
-      },
-    },
+    "s1n7ax/nvim-window-picker",
   },
-  -- fuzzy finder prioritizing filenames and smartcase search
+
+  -- allow the normal mode in floating windows
+  -- so I can use vim motions
   {
-    "natecraddock/telescope-zf-native.nvim",
-    config = function()
-      require("telescope").load_extension("zf-native")
-    end,
-  },
-  -- symbols outline
-  {
-    "simrat39/symbols-outline.nvim",
+    "stevearc/dressing.nvim",
     opts = {
-      show_relative_numbers = true,
+      input = {
+        insert_only = false,
+      },
     },
   },
 }

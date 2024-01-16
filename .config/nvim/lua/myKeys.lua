@@ -1,0 +1,307 @@
+-- Modes
+-- n  Normal mode map. Defined using ':nmap' or ':nnoremap'.
+-- i  Insert mode map. Defined using ':imap' or ':inoremap'.
+-- v  Visual and select mode map. Defined using ':vmap' or ':vnoremap'.
+-- x  Visual mode map. Defined using ':xmap' or ':xnoremap'.
+-- s  Select mode map. Defined using ':smap' or ':snoremap'.
+-- c  Command-line mode map. Defined using ':cmap' or ':cnoremap'.
+-- o  Operator pending mode map. Defined using ':omap' or ':onoremap'.
+
+local keys = {
+  motion = {
+    bigLeft = {
+      mode = "n",
+      shortcut = "H",
+    },
+    bigDown = {
+      mode = "n",
+      shortcut = "J",
+    },
+    bigUp = {
+      mode = "n",
+      shortcut = "K",
+    },
+    bigRight = {
+      mode = "n",
+      shortcut = "L",
+    },
+  },
+
+  --
+  -- Search and replace
+  --
+  searchReplace = {
+    replaceWord = {
+      desc = "Replace word",
+      mode = "n",
+      shortcut = "<leader>r",
+    },
+    replaceSelected = {
+      desc = "Change the selection (repeatable action for other occurences)",
+      mode = "v",
+      shortcut = "<leader>r",
+    },
+    searchInSelected = {
+      desc = "Search within the selection",
+      mode = "v",
+      shortcut = "<leader>/",
+    },
+    substiteSubstring = {
+      desc = "Substite substring",
+      mode = "x",
+      shortcut = "<leader>v",
+    },
+  },
+
+  --
+  -- Misc
+  --
+  misc = {
+    deleteBlackHole = {
+      desc = "Delete (black hole)",
+      mode = { "n", "v" },
+      shortcut = "<leader>d",
+    },
+    openFolderInFinder = {
+      desc = "Open parent directory in Finder",
+      mode = "n",
+      shortcut = "<leader>of",
+    },
+  },
+
+  --
+  -- Harpoon
+  --
+  harpoon = {
+    list = {
+      desc = "List harpoon marks",
+      mode = "n",
+      shortcut = "<M-'>",
+    },
+    mark = {
+      desc = "Un/Mark the current file in Harpoon",
+      mode = "n",
+      shortcut = "<leader>m",
+    },
+    shortcuts = {
+      "<M-q>",
+      "<M-w>",
+      "<M-e>",
+      "<M-r>",
+      "<M-t>",
+    },
+    clear = {
+      desc = "Remove all harpoon marks",
+      mode = "n",
+      shortcut = "<M-m>",
+    },
+  },
+
+  --
+  -- Explorer (Neo-tree)
+  --
+  explorer = {
+    showInCurrent = {
+      mode = "n",
+      shortcut = "-",
+    },
+    floatingExplorer = {
+      desc = "Explorer NeoTree (root dir)",
+      mode = "n",
+      shortcut = "<leader>e",
+    },
+    showSidebarExplorer = {
+      desc = "Show sidebar explorer",
+      mode = "n",
+      shortcut = "<M-v>",
+    },
+    hideSidebarExplorer = {
+      desc = "Hide sidebar explorer",
+      mode = "n",
+      shortcut = "<M-c>",
+    },
+    prevSibling = {
+      desc = "Jump to the previous sibling (folder/file)",
+      mode = "n",
+      shortcut = "K",
+    },
+    nextSibling = {
+      desc = "Jump to the next sibling (folder/file)",
+      mode = "n",
+      shortcut = "J",
+    },
+    split = {
+      desc = "Open file in the new window (horizontal split)",
+      mode = "n",
+      shortcut = "<C-s>",
+    },
+    vsplit = {
+      desc = "Open file in the new window (vertical split)",
+      mode = "n",
+      shortcut = "<C-v>",
+    },
+    grepInSelected = {
+      desc = "Grep search in the selected folder",
+      mode = "n",
+      shortcut = "tg",
+    },
+    findInSelected = {
+      desc = "Find in files of the selected folder",
+      mode = "n",
+      shortcut = "tf",
+    },
+  },
+
+  --
+  -- Telescope
+  --
+  telescope = {
+    findHiddenIncluded = {
+      desc = "Find in files (hiddens included)",
+      mode = "n",
+      shortcut = "<leader>fh",
+    },
+    showQuickfixLists = {
+      desc = "Browse opened quickfix lists",
+      mode = "n",
+      shortcut = "<leader>fq",
+    },
+    togglePreview = {
+      desc = "Toggle file preview",
+      mode = { "n", "i" },
+      shortcut = "<C-p>",
+    },
+  },
+
+  --
+  -- Git
+  --
+  git = {
+    fileHistory = {
+      desc = "The current file history",
+      mode = "n",
+      shortcut = "<leader>gd",
+    },
+    branchHistory = {
+      desc = "The current branch history",
+      mode = "n",
+      shortcut = "<leader>gD",
+    },
+    closeHistory = {
+      desc = "Close diffview history",
+      mode = "n",
+      shortcut = "<leader>gq",
+    },
+    copyFilepath = {
+      desc = "Copy path to the current file",
+      mode = "n",
+      shortcut = "<leader>go",
+    },
+    openInBrowser = {
+      desc = "Open file in the browser",
+      mode = "n",
+      shortcut = "<leader>gb",
+    },
+    copyFileLink = {
+      desc = "Copy link to the current file",
+      mode = { "n", "v" },
+      shortcut = "<leader>gf",
+    },
+    copyLineLink = {
+      desc = "Copy link to the current line/range",
+      mode = { "n", "v" },
+      shortcut = "<leader>gl",
+    },
+  },
+
+  --
+  -- Code completion
+  --
+  completion = {
+    show = {
+      mode = "i",
+      shortcut = "<C-space>",
+    },
+    next = {
+      mode = "i",
+      shortcut = "<C-n>",
+    },
+    prev = {
+      mode = "i",
+      shortcut = "<C-p>",
+    },
+    accept = {
+      mode = "i",
+      shortcut = "<C-y>",
+    },
+  },
+
+  --
+  -- Snippets
+  --
+  snippet = {
+    add = {
+      desc = "Add new snippet",
+      mode = { "n", "x" },
+      shortcut = "<leader>cn",
+    },
+    edit = {
+      desc = "Edit snippet",
+      mode = "n",
+      shortcut = "<leader>ce",
+    },
+    jumpNext = {
+      desc = "Jump to the next placeholder",
+      mode = { "s", "i" },
+      shortcut = "<m-l>",
+    },
+    jumpPrev = {
+      desc = "Jump to the previous placeholder",
+      mode = { "s", "i" },
+      shortcut = "<m-h>",
+    },
+  },
+
+  --
+  -- LSP
+  --
+  lsp = {
+    showDiagWindow = {
+      desc = "Show diag. in a floating window.",
+      mode = "n",
+      shortcut = "<leader>k",
+    },
+    hoverInfo = {
+      desc = "Show info",
+      mode = "n",
+      shortcut = "?",
+    },
+    log = {
+      desc = "LSP logs",
+      mode = "n",
+      shortcut = "<leader>xd",
+    },
+    info = {
+      desc = "LSP info",
+      mode = "n",
+      shortcut = "<leader>xi",
+    },
+    restart = {
+      desc = "Restart LSP",
+      mode = "n",
+      shortcut = "<leader>xr",
+    },
+    organizeImports = {
+      desc = "Organize imports",
+      mode = "n",
+      shortcut = "<leader>co",
+    },
+    renameFile = {
+      desc = "Rename file (refs updated)",
+      mode = "n",
+      shortcut = "<leader>cR",
+    },
+  },
+}
+
+return keys

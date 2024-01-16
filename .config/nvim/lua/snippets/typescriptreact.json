@@ -1,0 +1,17 @@
+{
+  "mc + _c": {
+    "body": [
+      "type ${1:MyComponent}Props = {",
+      "  $3",
+      "}",
+      "",
+      "export const $1 = (${2:props}: $1Props) => {",
+      "  return $0",
+      "}"
+    ],
+    "prefix": [
+      "mc",
+      "_c"
+    ]
+  }
+}
