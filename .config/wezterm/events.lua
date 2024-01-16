@@ -15,15 +15,15 @@ local function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-function on_format_tab_title(tab)
+local function on_format_tab_title(tab)
 	local zoomed = ""
 	local index = tab.tab_index + 1
 	local title = tab_title(tab)
 	if tab.active_pane.is_zoomed then
-		zoomed = "+"
+		zoomed = "*"
 	end
 	return {
-		{ Text = string.format(" %d %s%s ", index, title, zoomed) },
+		{ Text = string.format(" %d%s %s ", index, zoomed, title) },
 	}
 end
 
