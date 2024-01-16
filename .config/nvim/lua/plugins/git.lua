@@ -7,8 +7,8 @@ return {
       vim.keymap.set(
         myKeys.git.copyFilepath.mode,
         myKeys.git.copyFilepath.shortcut,
-        "y<C-g>",
-        { desc = "Copy file path" }
+        ":<C-U>call setreg(v:register, fugitive#Object(@%))<CR>",
+        { desc = "Copy file path", silent = true }
       )
 
       vim.keymap.set(
