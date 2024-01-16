@@ -42,21 +42,23 @@ local function create_pane_mappings(config)
 	return mappings
 end
 
-local keys = create_pane_mappings({
-	mods = {
-		focus = "SUPER",
-		split = "CTRL|SUPER",
-		resize = "META|SUPER",
-	},
-	keys = {
-		up = "k",
-		down = "j",
-		left = "h",
-		right = "l",
-	},
-})
+local M = {
+	keys = create_pane_mappings({
+		mods = {
+			focus = "SUPER",
+			split = "CTRL|SUPER",
+			resize = "META|SUPER",
+		},
+		keys = {
+			up = "k",
+			down = "j",
+			left = "h",
+			right = "l",
+		},
+	}),
+}
 
-table.insert(keys, {
+table.insert(M.keys, {
 	key = "P",
 	mods = "SUPER",
 	action = wezterm.action.QuickSelectArgs({
@@ -71,12 +73,12 @@ table.insert(keys, {
 	}),
 })
 
-table.insert(keys, {
+table.insert(M.keys, {
 	key = "E",
 	mods = "CTRL|SHIFT",
 	action = wezterm.action.PromptInputLine({
 		description = "Enter new name for tab",
-		action = wezterm.action_callback(function(window, _, line)
+		action = wezterm.action_callback(function(window, pane, line)
 			-- line will be `nil` if they hit escape without entering anything
 			-- An empty string if they just hit enter
 			-- Or the actual line of text they wrote
@@ -87,16 +89,30 @@ table.insert(keys, {
 	}),
 })
 
-table.insert(keys, {
+table.insert(M.keys, {
 	key = "<",
 	mods = "SUPER",
 	action = wezterm.action.MoveTabRelative(-1),
 })
 
-table.insert(keys, {
+table.insert(M.keys, {
 	key = ">",
 	mods = "SUPER",
 	action = wezterm.action.MoveTabRelative(1),
 })
 
-return keys
+table.insert(M.keys, {
+	key = "R",
+	mods = "SUPER",
+	action = wezterm.action.PaneSelect({
+		mode = "SwapWithActiveKeepFocus",
+	}),
+})
+
+table.insert(M.keys, {
+	key = "w",
+	mods = "SUPER|CTRL",
+	action = wezterm.action.CloseCurrentPane({ confirm = true }),
+})
+
+return M
