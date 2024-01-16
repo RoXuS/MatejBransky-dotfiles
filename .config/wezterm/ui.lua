@@ -49,6 +49,7 @@ return {
 	font_size = 14,
 	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = true,
+	tab_max_width = 250,
 	use_fancy_tab_bar = false,
 	colors = {
 		tab_bar = resolve_tab_bar({
