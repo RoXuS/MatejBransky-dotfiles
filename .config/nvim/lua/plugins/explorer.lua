@@ -62,82 +62,84 @@ end
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    keys = {
-      {
-        "-",
-        function()
-          require("neo-tree.command").execute({
-            position = "current",
-            reveal = true,
-            reveal_force_cwd = true,
-          })
+    init = function()
+      -- avoid netrw flickering (https://github.com/LazyVim/LazyVim/discussions/2366)
+      vim.api.nvim_create_autocmd("BufEnter", {
+        -- make a group to be able to delete it later
+        group = vim.api.nvim_create_augroup("NeoTreeInit", { clear = true }),
+        callback = function()
+          local f = vim.fn.expand("%:p")
+          if vim.fn.isdirectory(f) ~= 0 then
+            vim.cmd("Neotree current dir=" .. f)
+            -- neo-tree is loaded now, delete the init autocmd
+            vim.api.nvim_clear_autocmds({ group = "NeoTreeInit" })
+          end
         end,
-      },
-      -- Floating file explorer
-      {
-        myKeys.explorer.floatingExplorer.shortcut,
-        function()
-          require("neo-tree.command").execute({
-            position = "float",
-            -- dir = require("lazyvim.util").root(),
-            reveal = true,
-            reveal_force_cwd = true,
-          })
-        end,
-        desc = myKeys.explorer.floatingExplorer.desc,
-      },
-      {
-        "<leader>E",
-        function()
-          require("neo-tree.command").execute({ position = "float", dir = vim.loop.cwd() })
-        end,
-        desc = "Explorer NeoTree (cwd)",
-      },
-      {
-        "<leader>fe",
-        function()
-          require("neo-tree.command").execute({
-            position = "left",
-            -- dir = require("lazyvim.util").root(),
-            reveal = true,
-            -- reveal_force_cwd = true,
-          })
-        end,
-        desc = "Explorer in the sidebar",
-      },
-      {
-        myKeys.explorer.showSidebarExplorer.shortcut,
-        function()
-          require("neo-tree.command").execute({
-            action = "focus",
-            position = "left",
-          })
-        end,
-        desc = myKeys.explorer.showSidebarExplorer.desc,
-      },
-      {
-        myKeys.explorer.hideSidebarExplorer.shortcut,
-        function()
-          require("neo-tree.command").execute({
-            action = "close",
-          })
-        end,
-        desc = myKeys.explorer.hideSidebarExplorer.desc,
-      },
-    },
-    -- init = function()
-    --   if vim.fn.argc(-1) == 1 then
-    --     local stat = vim.loop.fs_stat(vim.fn.argv(0))
-    --     if stat and stat.type == "directory" then
-    --       require("neo-tree").setup({
-    --         window = {
-    --           position = "current",
-    --         },
-    --       })
-    --     end
-    --   end
-    -- end,
+      })
+      -- keymaps
+    end,
     opts = {
+      filesystem = {
+        -- nvim <DIR> shows neo-tree in the position = "current" (netrw style)
+        hijack_netrw_behavior = "open_current",
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
+        -- change the filter into a full path search with space as an implicit `".*"`,
+        -- so `fi init` will match: `./sources/filesystem/init.lua`
+        find_by_full_path_words = true,
+        follow_current_file = {
+          enabled = false,
+          leave_dirs_open = true,
+        },
+        window = {
+          mappings = {
+            -- Find/grep for a file under the current node using Telescope and select it.
+            -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#find-with-telescope
+            [myKeys.explorer.findInSelected.shortcut] = "telescope_find",
+            [myKeys.explorer.grepInSelected.shortcut] = "telescope_grep",
+          },
+        },
+        commands = {
+          telescope_find = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            require("telescope.builtin").find_files(getTelescopeOpts(state, path))
+          end,
+
+          telescope_grep = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            require("telescope.builtin").live_grep(getTelescopeOpts(state, path))
+          end,
+        },
+        components = {
+          -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#harpoon-index
+          harpoon_index = function(config, node)
+            local Marked = require("harpoon.mark")
+            local path = node:get_id()
+            local succuss, index = pcall(Marked.get_index_of, path)
+            if succuss and index and index > 0 then
+              return {
+                text = string.format(" → %d", index), -- <-- Add your favorite harpoon like arrow here
+                highlight = config.highlight or "NeoTreeDirectoryIcon",
+              }
+            else
+              return {}
+            end
+          end,
+        },
+        renderers = {
+          file = {
+            { "icon" },
+            { "name", use_git_status_colors = true },
+            { "harpoon_index" }, --> This is what actually adds the component in where you want it
+            { "diagnostics" },
+            { "git_status", highlight = "NeoTreeDimText" },
+          },
+        },
+      },
       -- I need the normal mode in editing popups
       use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
       event_handlers = {
@@ -217,65 +219,68 @@ return {
           },
         },
       },
-      filesystem = {
-        hijack_netrw_behavior = "open_current",
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
-        },
-        -- change the filter into a full path search with space as an implicit `".*"`,
-        -- so `fi init` will match: `./sources/filesystem/init.lua`
-        find_by_full_path_words = true,
-        follow_current_file = {
-          enabled = false,
-          leave_dirs_open = true,
-        },
-        window = {
-          mappings = {
-            -- Find/grep for a file under the current node using Telescope and select it.
-            -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#find-with-telescope
-            [myKeys.explorer.findInSelected.shortcut] = "telescope_find",
-            [myKeys.explorer.grepInSelected.shortcut] = "telescope_grep",
-          },
-        },
-        commands = {
-          telescope_find = function(state)
-            local node = state.tree:get_node()
-            local path = node:get_id()
-            require("telescope.builtin").find_files(getTelescopeOpts(state, path))
-          end,
-
-          telescope_grep = function(state)
-            local node = state.tree:get_node()
-            local path = node:get_id()
-            require("telescope.builtin").live_grep(getTelescopeOpts(state, path))
-          end,
-        },
-        components = {
-          -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#harpoon-index
-          harpoon_index = function(config, node)
-            local Marked = require("harpoon.mark")
-            local path = node:get_id()
-            local succuss, index = pcall(Marked.get_index_of, path)
-            if succuss and index and index > 0 then
-              return {
-                text = string.format(" → %d", index), -- <-- Add your favorite harpoon like arrow here
-                highlight = config.highlight or "NeoTreeDirectoryIcon",
-              }
-            else
-              return {}
-            end
-          end,
-        },
-        renderers = {
-          file = {
-            { "icon" },
-            { "name", use_git_status_colors = true },
-            { "harpoon_index" }, --> This is what actually adds the component in where you want it
-            { "diagnostics" },
-            { "git_status", highlight = "NeoTreeDimText" },
-          },
-        },
+    },
+    keys = {
+      {
+        "-",
+        function()
+          require("neo-tree.command").execute({
+            position = "current",
+            reveal = true,
+            reveal_force_cwd = true,
+          })
+        end,
+      },
+      -- Floating file explorer
+      {
+        myKeys.explorer.floatingExplorer.shortcut,
+        function()
+          require("neo-tree.command").execute({
+            position = "float",
+            -- dir = require("lazyvim.util").root(),
+            reveal = true,
+            reveal_force_cwd = true,
+          })
+        end,
+        desc = myKeys.explorer.floatingExplorer.desc,
+      },
+      {
+        "<leader>E",
+        function()
+          require("neo-tree.command").execute({ position = "float", dir = vim.loop.cwd() })
+        end,
+        desc = "Explorer NeoTree (cwd)",
+      },
+      {
+        "<leader>fe",
+        function()
+          require("neo-tree.command").execute({
+            position = "left",
+            -- dir = require("lazyvim.util").root(),
+            reveal = true,
+            -- reveal_force_cwd = true,
+          })
+        end,
+        desc = "Explorer in the sidebar",
+      },
+      {
+        myKeys.explorer.showSidebarExplorer.shortcut,
+        function()
+          require("neo-tree.command").execute({
+            action = "focus",
+            position = "left",
+          })
+        end,
+        desc = myKeys.explorer.showSidebarExplorer.desc,
+      },
+      {
+        myKeys.explorer.hideSidebarExplorer.shortcut,
+        function()
+          require("neo-tree.command").execute({
+            action = "close",
+          })
+        end,
+        desc = myKeys.explorer.hideSidebarExplorer.desc,
       },
     },
   },
