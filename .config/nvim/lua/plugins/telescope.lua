@@ -41,6 +41,7 @@ return {
         mappings = {
           n = {
             [myKeys.telescope.togglePreview.shortcut] = require("telescope.actions.layout").toggle_preview,
+            [myKeys.telescope.close.shortcut] = require("telescope.actions").close,
           },
           i = {
             [myKeys.telescope.togglePreview.shortcut] = require("telescope.actions.layout").toggle_preview,

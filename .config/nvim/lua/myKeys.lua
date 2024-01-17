@@ -150,6 +150,11 @@ local keys = {
       mode = "n",
       shortcut = "tf",
     },
+    close = {
+      desc = "Close explorer",
+      mode = { "n", "i" },
+      shortcut = "<C-c>",
+    },
   },
 
   --
@@ -170,6 +175,11 @@ local keys = {
       desc = "Toggle file preview",
       mode = { "n", "i" },
       shortcut = "<C-p>",
+    },
+    close = {
+      desc = "Close picker",
+      mode = { "n", "i" },
+      shortcut = "<C-c>",
     },
   },
 

@@ -161,6 +161,8 @@ return {
           ["s"] = false,
           ["S"] = false,
           ["t"] = false,
+
+          [myKeys.explorer.close.shortcut] = "close_window",
           [myKeys.explorer.nextSibling.shortcut] = nextSibling,
           [myKeys.explorer.prevSibling.shortcut] = prevSibling,
           [myKeys.explorer.split.shortcut] = "split_with_window_picker",
