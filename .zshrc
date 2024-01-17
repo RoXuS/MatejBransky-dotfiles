@@ -37,6 +37,9 @@ bindkey ^S history-incremental-search-forward
 # fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# syntax highlighting
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Yank to the system clipboard
 function vi-yank-xclip {
     zle vi-yank
