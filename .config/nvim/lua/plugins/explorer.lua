@@ -125,6 +125,18 @@ return {
         desc = myKeys.explorer.hideSidebarExplorer.desc,
       },
     },
+    -- init = function()
+    --   if vim.fn.argc(-1) == 1 then
+    --     local stat = vim.loop.fs_stat(vim.fn.argv(0))
+    --     if stat and stat.type == "directory" then
+    --       require("neo-tree").setup({
+    --         window = {
+    --           position = "current",
+    --         },
+    --       })
+    --     end
+    --   end
+    -- end,
     opts = {
       -- I need the normal mode in editing popups
       use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
@@ -163,33 +175,40 @@ return {
           ["t"] = false,
 
           [myKeys.explorer.close.shortcut] = "close_window",
-          [myKeys.explorer.nextSibling.shortcut] = nextSibling,
-          [myKeys.explorer.prevSibling.shortcut] = prevSibling,
+          [myKeys.explorer.prevSibling.shortcut] = { prevSibling, desc = myKeys.explorer.prevSibling.desc },
+          [myKeys.explorer.nextSibling.shortcut] = { nextSibling, desc = myKeys.explorer.nextSibling.desc },
           [myKeys.explorer.split.shortcut] = "split_with_window_picker",
           [myKeys.explorer.vsplit.shortcut] = "vsplit_with_window_picker",
           -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
-          ["h"] = function(state)
-            local node = state.tree:get_node()
-            if (node.type == "directory" or node:has_children()) and node:is_expanded() then
-              state.commands.toggle_node(state)
-            else
-              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-            end
-          end,
-          ["l"] = function(state)
-            local node = state.tree:get_node()
-            if node.type == "directory" or node:has_children() then
-              if not node:is_expanded() then
+          ["h"] = {
+            function(state)
+              local node = state.tree:get_node()
+              if (node.type == "directory" or node:has_children()) and node:is_expanded() then
                 state.commands.toggle_node(state)
               else
-                require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+                require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
               end
-            end
-          end,
+            end,
+            desc = "go up",
+          },
+          ["l"] = {
+            function(state)
+              local node = state.tree:get_node()
+              if node.type == "directory" or node:has_children() then
+                if not node:is_expanded() then
+                  state.commands.toggle_node(state)
+                else
+                  require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+                end
+              end
+            end,
+            desc = "go down",
+          },
         },
       },
       filesystem = {
+        hijack_netrw_behavior = "open_current",
         filtered_items = {
           hide_dotfiles = false,
           hide_gitignored = false,

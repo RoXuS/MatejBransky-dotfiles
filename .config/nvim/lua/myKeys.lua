@@ -74,9 +74,9 @@ local keys = {
   --
   harpoon = {
     list = {
-      desc = "List harpoon marks",
+      desc = "Toggle harpoon list",
       mode = "n",
-      shortcut = "<M-'>",
+      shortcut = "<M-b>",
     },
     mark = {
       desc = "Un/Mark the current file in Harpoon",
@@ -108,25 +108,25 @@ local keys = {
     floatingExplorer = {
       desc = "Explorer NeoTree (root dir)",
       mode = "n",
-      shortcut = "<leader>e",
+      shortcut = "<M-'>",
     },
     showSidebarExplorer = {
       desc = "Show sidebar explorer",
       mode = "n",
-      shortcut = "<M-v>",
+      shortcut = "<C-'>",
     },
     hideSidebarExplorer = {
       desc = "Hide sidebar explorer",
       mode = "n",
-      shortcut = "<M-c>",
+      shortcut = "<C-c>",
     },
     prevSibling = {
-      desc = "Jump to the previous sibling (folder/file)",
+      desc = "Jump to the previous sibling",
       mode = "n",
       shortcut = "K",
     },
     nextSibling = {
-      desc = "Jump to the next sibling (folder/file)",
+      desc = "Jump to the next sibling",
       mode = "n",
       shortcut = "J",
     },
