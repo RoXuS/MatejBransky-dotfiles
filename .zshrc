@@ -49,6 +49,16 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
+# Function to set the tab title during command execution
+function preexec() {
+    print -Pn "\e]0;%~ ($1)\a"
+}
+
+# Function to set the tab title after command completion
+function precmd() {
+    print -Pn "\e]0;%~\a"
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
