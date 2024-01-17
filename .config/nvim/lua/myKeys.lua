@@ -81,7 +81,7 @@ local keys = {
     mark = {
       desc = "Un/Mark the current file in Harpoon",
       mode = "n",
-      shortcut = "<leader>m",
+      shortcut = "<M-a>",
     },
     shortcuts = {
       "<M-q>",
@@ -90,10 +90,20 @@ local keys = {
       "<M-r>",
       "<M-t>",
     },
+    prev = {
+      mode = "n",
+      shortcut = "<M-Left>",
+      desc = "Prev harpoon mark",
+    },
+    next = {
+      mode = "n",
+      shortcut = "<M-Right>",
+      desc = "Next harpoon mark",
+    },
     clear = {
       desc = "Remove all harpoon marks",
       mode = "n",
-      shortcut = "<M-m>",
+      shortcut = "<M-x>",
     },
   },
 

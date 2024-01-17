@@ -33,6 +33,18 @@ return {
         desc = myKeys.harpoon.mark.desc,
       })
 
+      table.insert(keys, {
+        myKeys.harpoon.prev.shortcut,
+        ui.nav_prev,
+        desc = myKeys.harpoon.prev.desc,
+      })
+
+      table.insert(keys, {
+        myKeys.harpoon.next.shortcut,
+        ui.nav_next,
+        desc = myKeys.harpoon.next.desc,
+      })
+
       local navKeys = myKeys.harpoon.shortcuts
 
       for index, navKey in ipairs(navKeys) do

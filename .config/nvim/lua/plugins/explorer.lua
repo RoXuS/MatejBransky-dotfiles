@@ -179,6 +179,16 @@ return {
           [myKeys.explorer.nextSibling.shortcut] = { nextSibling, desc = myKeys.explorer.nextSibling.desc },
           [myKeys.explorer.split.shortcut] = "split_with_window_picker",
           [myKeys.explorer.vsplit.shortcut] = "vsplit_with_window_picker",
+          [myKeys.harpoon.mark.shortcut] = {
+            function(state)
+              local node = state.tree:get_node()
+              if node.type ~= "directory" then
+                require("harpoon.mark").toggle_file(node.id)
+                require("neo-tree.sources.manager").refresh("filesystem")
+              end
+            end,
+            desc = myKeys.harpoon.mark.desc,
+          },
           -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
           ["h"] = {
