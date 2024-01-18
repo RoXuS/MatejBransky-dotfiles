@@ -273,12 +273,12 @@ local keys = {
     jumpNext = {
       desc = "Jump to the next placeholder",
       mode = { "s", "i" },
-      shortcut = "<m-l>",
+      shortcut = "<m-j>",
     },
     jumpPrev = {
       desc = "Jump to the previous placeholder",
       mode = { "s", "i" },
-      shortcut = "<m-h>",
+      shortcut = "<m-k>",
     },
   },
 
