@@ -110,4 +110,15 @@ return {
       enable_close_on_slash = false,
     },
   },
+
+  -- Support prompts the user to pick a window for opening the file
+  {
+    "s1n7ax/nvim-window-picker",
+    name = "window-picker",
+    event = "VeryLazy",
+    version = "2.*",
+    config = function()
+      require("window-picker").setup()
+    end,
+  },
 }

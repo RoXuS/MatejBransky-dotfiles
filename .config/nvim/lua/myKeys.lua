@@ -181,6 +181,11 @@ local keys = {
       mode = "n",
       shortcut = "<leader>fq",
     },
+    openWindowPicker = {
+      desc = "Open with window picker",
+      mode = { "n", "i" },
+      shortcut = "<C-o>",
+    },
     togglePreview = {
       desc = "Toggle file preview",
       mode = { "n", "i" },

@@ -285,11 +285,6 @@ return {
     },
   },
 
-  -- Support prompts the user to pick a window for opening the file
-  {
-    "s1n7ax/nvim-window-picker",
-  },
-
   -- allow the normal mode in floating windows
   -- so I can use vim motions
   {

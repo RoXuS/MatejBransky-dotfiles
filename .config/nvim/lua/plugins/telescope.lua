@@ -44,6 +44,21 @@ return {
             [myKeys.telescope.close.shortcut] = require("telescope.actions").close,
           },
           i = {
+            [myKeys.telescope.openWindowPicker.shortcut] = function(prompt_bufnr)
+              -- Use nvim-window-picker to choose the window by dynamically attaching a function
+              local action_set = require("telescope.actions.set")
+              local action_state = require("telescope.actions.state")
+
+              local picker = action_state.get_current_picker(prompt_bufnr)
+              picker.get_selection_window = function(picker)
+                local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
+                -- Unbind after using so next instance of the picker acts normally
+                picker.get_selection_window = nil
+                return picked_window_id
+              end
+
+              return action_set.edit(prompt_bufnr, "edit")
+            end,
             [myKeys.telescope.togglePreview.shortcut] = require("telescope.actions.layout").toggle_preview,
           },
         },
