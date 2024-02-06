@@ -4,7 +4,6 @@
 
 vim.opt.conceallevel = 0 -- Show markup characters
 vim.opt.showtabline = 0 -- Hide tabline
-vim.opt.textwidth = 100
 
 vim.filetype.add({
   extension = {
