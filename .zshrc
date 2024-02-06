@@ -22,7 +22,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:$HOME/.local/bin"
 
 alias lg='lazygit'
+# Git with the dotfiles context
 alias df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# LazyGit with the dotfiles context
 alias ldf='/opt/homebrew/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 gbd() {
