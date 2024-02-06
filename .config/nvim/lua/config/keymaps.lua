@@ -4,11 +4,6 @@
 
 local myKeys = require("myKeys")
 
-vim.keymap.set(myKeys.motion.bigLeft.mode, myKeys.motion.bigLeft.shortcut, "6h")
-vim.keymap.set(myKeys.motion.bigDown.mode, myKeys.motion.bigDown.shortcut, "6j")
-vim.keymap.set(myKeys.motion.bigUp.mode, myKeys.motion.bigUp.shortcut, "6k")
-vim.keymap.set(myKeys.motion.bigRight.mode, myKeys.motion.bigRight.shortcut, "6l")
-
 vim.keymap.set(
   myKeys.misc.deleteBlackHole.mode,
   myKeys.misc.deleteBlackHole.shortcut,

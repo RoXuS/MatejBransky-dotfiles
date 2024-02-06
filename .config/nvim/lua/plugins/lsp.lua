@@ -6,8 +6,6 @@ return {
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
-      keys[#keys + 1] = { myKeys.motion.bigUp.shortcut, "6k" }
-
       keys[#keys + 1] = { myKeys.lsp.hoverInfo.shortcut, vim.lsp.buf.hover, desc = myKeys.lsp.hoverInfo.desc }
 
       vim.keymap.set(myKeys.lsp.log.mode, myKeys.lsp.log.shortcut, "<Cmd>LspLog<CR>", { desc = myKeys.lsp.log.desc })
@@ -95,6 +93,9 @@ return {
         -- https://github.com/LazyVim/LazyVim/discussions/345
         signature = {
           auto_open = false,
+        },
+        hover = {
+          silent = true, -- set to true to not show a message if hover is not available
         },
       },
     },

@@ -121,4 +121,68 @@ return {
       require("window-picker").setup()
     end,
   },
+
+  -- Statusline:
+  --  +-------------------------------------------------+
+  --  | A | B | C                             X | Y | Z |
+  --  +-------------------------------------------------+
+  --
+  -- LazyVim defaults:
+  -- * A: mode (n, i, <C-v>, V,...)
+  -- * B: git branch
+  -- * C: root_dir | diagnostics | filetype icon + file path
+  -- * X: last command | noice.api.status.mode??? | DAP (bug icon) | LazyVim updates (packages) | git diff
+  -- * Y: progress [%] | location (line:column)
+  -- * Z: clocks
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      -- I don't need clocks in the statusline
+      opts.sections.lualine_z = {
+        "encoding",
+        "filetype",
+      }
+    end,
+  },
+
+  -- Show filenames in windows
+  {
+    "b0o/incline.nvim",
+    opts = {
+      hide = {
+        cursorline = true,
+      },
+      -- Use basic render with one enhancement: show dirname for index.* files
+      -- e.g. src/Foobar/index.tsx => Foobar/i
+      render = function(props)
+        local bufname = vim.api.nvim_buf_get_name(props.buf)
+        local res = bufname ~= "" and vim.fn.fnamemodify(bufname, ":t") or "[No Name]"
+
+        if string.match(res, "^index%.[^.]+$") then
+          local directory = vim.fn.fnamemodify(bufname, ":h:t")
+          local extension = vim.fn.fnamemodify(bufname, ":e")
+
+          res = directory .. "/"
+
+          if extension ~= "" then
+            res = res .. extension
+          end
+        end
+
+        if vim.api.nvim_get_option_value("modified", { buf = props.buf }) then
+          res = res .. " [+]"
+        end
+
+        return res
+      end,
+    },
+    -- Optional: Lazy load Incline
+    event = "VeryLazy",
+  },
+
+  -- Keep reasonable amount of opened buffers
+  {
+    "axkirillov/hbac.nvim",
+    config = true,
+  },
 }

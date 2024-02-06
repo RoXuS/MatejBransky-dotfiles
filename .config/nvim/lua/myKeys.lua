@@ -8,25 +8,6 @@
 -- o  Operator pending mode map. Defined using ':omap' or ':onoremap'.
 
 local keys = {
-  motion = {
-    bigLeft = {
-      mode = "n",
-      shortcut = "H",
-    },
-    bigDown = {
-      mode = "n",
-      shortcut = "J",
-    },
-    bigUp = {
-      mode = "n",
-      shortcut = "K",
-    },
-    bigRight = {
-      mode = "n",
-      shortcut = "L",
-    },
-  },
-
   --
   -- Search and replace
   --
@@ -60,7 +41,7 @@ local keys = {
     deleteBlackHole = {
       desc = "Delete (black hole)",
       mode = { "n", "v" },
-      shortcut = "<leader>d",
+      shortcut = "<M-d>",
     },
     openFolderInFinder = {
       desc = "Open parent directory in Finder",
@@ -171,6 +152,17 @@ local keys = {
   -- Telescope
   --
   telescope = {
+    recentFiles = {
+      title = "Recent files",
+      desc = "Show recently used files",
+      mode = "n",
+      shortcut = "<M-,>",
+    },
+    liveGrepFuzzyRefine = {
+      desc = "Fuzzy refine the searched expression",
+      mode = "i",
+      shortcut = "<C-f>",
+    },
     findHiddenIncluded = {
       desc = "Find in files (hiddens included)",
       mode = "n",
@@ -299,7 +291,7 @@ local keys = {
     hoverInfo = {
       desc = "Show info",
       mode = "n",
-      shortcut = "?",
+      shortcut = "K",
     },
     log = {
       desc = "LSP logs",
