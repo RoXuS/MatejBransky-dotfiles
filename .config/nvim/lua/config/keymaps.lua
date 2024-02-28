@@ -2,20 +2,20 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 vim.keymap.set(
-  myKeys.misc.deleteBlackHole.mode,
-  myKeys.misc.deleteBlackHole.shortcut,
+  my_keys.misc.deleteBlackHole.mode,
+  my_keys.misc.deleteBlackHole.shortcut,
   [["_d]],
-  { desc = myKeys.misc.deleteBlackHole.desc }
+  { desc = my_keys.misc.deleteBlackHole.desc }
 )
 
 vim.keymap.set(
-  myKeys.misc.openFolderInFinder.mode,
-  myKeys.misc.openFolderInFinder.shortcut,
+  my_keys.misc.openFolderInFinder.mode,
+  my_keys.misc.openFolderInFinder.shortcut,
   ":!open %:h<CR>",
-  { desc = myKeys.misc.openFolderInFinder.desc }
+  { desc = my_keys.misc.openFolderInFinder.desc }
 )
 
 -- search for visually selected text
@@ -23,28 +23,28 @@ vim.keymap.set(
 local searchSelected = [[y/\V\c<C-r>=escape(@", '')<CR><CR>]]
 
 vim.keymap.set(
-  myKeys.searchReplace.replaceWord.mode,
-  myKeys.searchReplace.replaceWord.shortcut,
+  my_keys.searchReplace.replaceWord.mode,
+  my_keys.searchReplace.replaceWord.shortcut,
   "viw" .. searchSelected .. "``cgn",
-  { desc = myKeys.searchReplace.replaceWord.desc }
+  { desc = my_keys.searchReplace.replaceWord.desc }
 )
 
 vim.keymap.set(
-  myKeys.searchReplace.replaceSelected.mode,
-  myKeys.searchReplace.replaceSelected.shortcut,
+  my_keys.searchReplace.replaceSelected.mode,
+  my_keys.searchReplace.replaceSelected.shortcut,
   searchSelected .. "``cgn",
-  { desc = myKeys.searchReplace.replaceSelected.desc }
+  { desc = my_keys.searchReplace.replaceSelected.desc }
 )
 vim.keymap.set(
-  myKeys.searchReplace.searchInSelected.mode,
-  myKeys.searchReplace.searchInSelected.shortcut,
+  my_keys.searchReplace.searchInSelected.mode,
+  my_keys.searchReplace.searchInSelected.shortcut,
   "<esc>/\\%V",
-  { desc = myKeys.searchReplace.searchInSelected.desc }
+  { desc = my_keys.searchReplace.searchInSelected.desc }
 )
 
 vim.keymap.set(
-  myKeys.searchReplace.substiteSubstring.mode,
-  myKeys.searchReplace.substiteSubstring.shortcut,
+  my_keys.searchReplace.substiteSubstring.mode,
+  my_keys.searchReplace.substiteSubstring.shortcut,
   [[:s/\%V]],
-  { desc = myKeys.searchReplace.substiteSubstring.desc }
+  { desc = my_keys.searchReplace.substiteSubstring.desc }
 )

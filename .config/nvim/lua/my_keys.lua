@@ -238,6 +238,7 @@ local keys = {
     show = {
       mode = "i",
       shortcut = "<C-space>",
+      desc = "Show completion list",
     },
     next = {
       mode = "i",
@@ -283,10 +284,55 @@ local keys = {
   -- LSP
   --
   lsp = {
+    goToDefinition = {
+      mode = "n",
+      shortcut = "gd",
+      desc = "Go to definition",
+    },
+    goToTypeDefinition = {
+      desc = "Go to type definition",
+      mode = "n",
+      shortcut = "gy",
+    },
+    goToImplementation = {
+      desc = "Go to implementation",
+      mode = "n",
+      shortcut = "gi",
+    },
+    goToReferences = {
+      desc = "Go to references",
+      mode = "n",
+      shortcut = "gr",
+    },
     showDiagWindow = {
       desc = "Show diag. in a floating window.",
       mode = "n",
       shortcut = "<leader>k",
+    },
+    outlineSymbols = {
+      desc = "Outline symbols",
+      mode = "n",
+      shortcut = "<leader>co"
+    },
+    renameSymbol = {
+      desc = "Rename symbol",
+      mode = "n",
+      shortcut = "<leader>cr",
+    },
+    codeAction = {
+      desc = "Code action",
+      mode = { "x", "n" },
+      shortcut = "<leader>ca",
+    },
+    sourceAction = {
+      desc = "Source action",
+      mode = "n",
+      shortcut = "<leader>cA",
+    },
+    diagList = {
+      desc = "Show diagnostics",
+      mode = "n",
+      shortcut = "<leader>xx",
     },
     hoverInfo = {
       desc = "Show info",
@@ -307,6 +353,11 @@ local keys = {
       desc = "Restart LSP",
       mode = "n",
       shortcut = "<leader>xr",
+    },
+    format = {
+      desc = "Format",
+      mode = { "x", "n" },
+      shortcut = "<leader>cf"
     },
     organizeImports = {
       desc = "Organize imports",

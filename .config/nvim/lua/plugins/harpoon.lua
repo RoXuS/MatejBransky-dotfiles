@@ -1,4 +1,4 @@
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 return {
   {
@@ -13,39 +13,39 @@ return {
       local ui = require("harpoon.ui")
 
       table.insert(keys, {
-        myKeys.harpoon.list.shortcut,
+        my_keys.harpoon.list.shortcut,
         ui.toggle_quick_menu,
-        desc = myKeys.harpoon.list.desc,
+        desc = my_keys.harpoon.list.desc,
       })
 
       table.insert(keys, {
-        myKeys.harpoon.clear.shortcut,
+        my_keys.harpoon.clear.shortcut,
         function()
           mark.clear_all()
           print("Harpoon marks removed.")
         end,
-        desc = myKeys.harpoon.clear.desc,
+        desc = my_keys.harpoon.clear.desc,
       })
 
       table.insert(keys, {
-        myKeys.harpoon.mark.shortcut,
+        my_keys.harpoon.mark.shortcut,
         mark.toggle_file,
-        desc = myKeys.harpoon.mark.desc,
+        desc = my_keys.harpoon.mark.desc,
       })
 
       table.insert(keys, {
-        myKeys.harpoon.prev.shortcut,
+        my_keys.harpoon.prev.shortcut,
         ui.nav_prev,
-        desc = myKeys.harpoon.prev.desc,
+        desc = my_keys.harpoon.prev.desc,
       })
 
       table.insert(keys, {
-        myKeys.harpoon.next.shortcut,
+        my_keys.harpoon.next.shortcut,
         ui.nav_next,
-        desc = myKeys.harpoon.next.desc,
+        desc = my_keys.harpoon.next.desc,
       })
 
-      local navKeys = myKeys.harpoon.shortcuts
+      local navKeys = my_keys.harpoon.shortcuts
 
       for index, navKey in ipairs(navKeys) do
         table.insert(keys, {

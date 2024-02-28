@@ -1,35 +1,35 @@
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 return {
   {
     "tpope/vim-fugitive",
     config = function()
       vim.keymap.set(
-        myKeys.git.copyFilepath.mode,
-        myKeys.git.copyFilepath.shortcut,
+        my_keys.git.copyFilepath.mode,
+        my_keys.git.copyFilepath.shortcut,
         ":<C-U>call setreg(v:register, fugitive#Object(@%))<CR>",
         { desc = "Copy file path", silent = true }
       )
 
       vim.keymap.set(
-        myKeys.git.openInBrowser.mode,
-        myKeys.git.openInBrowser.shortcut,
+        my_keys.git.openInBrowser.mode,
+        my_keys.git.openInBrowser.shortcut,
         "<Cmd>GBrowse<CR>",
-        { desc = myKeys.git.openInBrowser.desc }
+        { desc = my_keys.git.openInBrowser.desc }
       )
 
       vim.keymap.set(
-        myKeys.git.copyFileLink.mode,
-        myKeys.git.copyFileLink.shortcut,
+        my_keys.git.copyFileLink.mode,
+        my_keys.git.copyFileLink.shortcut,
         "<Cmd>GBrowse!<CR>",
-        { desc = myKeys.git.copyFileLink.desc }
+        { desc = my_keys.git.copyFileLink.desc }
       )
 
       vim.keymap.set(
-        myKeys.git.copyLineLink.mode,
-        myKeys.git.copyLineLink.shortcut,
+        my_keys.git.copyLineLink.mode,
+        my_keys.git.copyLineLink.shortcut,
         ":.GBrowse!<CR>",
-        { desc = myKeys.git.copyLineLink.desc, silent = true }
+        { desc = my_keys.git.copyLineLink.desc, silent = true }
       )
     end,
   },
@@ -48,9 +48,9 @@ return {
   {
     "sindrets/diffview.nvim",
     keys = {
-      { myKeys.git.branchHistory.shortcut, ":DiffviewFileHistory<CR>", desc = myKeys.git.branchHistory.desc },
-      { myKeys.git.fileHistory.shortcut, ":DiffviewFileHistory %<CR>", desc = myKeys.git.fileHistory.desc },
-      { myKeys.git.closeHistory.shortcut, ":tabclose<CR>", desc = myKeys.git.closeHistory.desc },
+      { my_keys.git.branchHistory.shortcut, ":DiffviewFileHistory<CR>", desc = my_keys.git.branchHistory.desc },
+      { my_keys.git.fileHistory.shortcut, ":DiffviewFileHistory %<CR>", desc = my_keys.git.fileHistory.desc },
+      { my_keys.git.closeHistory.shortcut, ":tabclose<CR>", desc = my_keys.git.closeHistory.desc },
     },
   },
 }

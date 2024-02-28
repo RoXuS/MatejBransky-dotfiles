@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 local function filenameFirst(_, path)
   local tail = vim.fs.basename(path)
@@ -60,7 +60,7 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       {
-        myKeys.telescope.findHiddenIncluded.shortcut,
+        my_keys.telescope.findHiddenIncluded.shortcut,
         function()
           require("telescope.builtin").find_files({
             prompt_title = "Find files (hidden included)",
@@ -70,23 +70,23 @@ return {
             find_command = { "rg", "--files", "-g", "!{.git,node_modules,.gradle,tmp,dist,test-results}" },
           })
         end,
-        desc = myKeys.telescope.findHiddenIncluded.desc,
+        desc = my_keys.telescope.findHiddenIncluded.desc,
       },
       {
-        myKeys.telescope.showQuickfixLists.shortcut,
+        my_keys.telescope.showQuickfixLists.shortcut,
         function()
           require("telescope.builtin").quickfixhistory()
         end,
-        desc = myKeys.telescope.showQuickfixLists.desc,
+        desc = my_keys.telescope.showQuickfixLists.desc,
       },
       {
-        myKeys.telescope.recentFiles.shortcut,
+        my_keys.telescope.recentFiles.shortcut,
         function()
           return require("telescope").extensions.smart_open.smart_open({
             cwd_only = true,
           })
         end,
-        desc = myKeys.telescope.recentFiles.desc,
+        desc = my_keys.telescope.recentFiles.desc,
       },
     },
     opts = {
@@ -106,11 +106,11 @@ return {
 
         mappings = {
           n = {
-            [myKeys.telescope.togglePreview.shortcut] = actions_layout.toggle_preview,
-            [myKeys.telescope.close.shortcut] = actions.close,
+            [my_keys.telescope.togglePreview.shortcut] = actions_layout.toggle_preview,
+            [my_keys.telescope.close.shortcut] = actions.close,
           },
           i = {
-            [myKeys.telescope.openWindowPicker.shortcut] = function(prompt_bufnr)
+            [my_keys.telescope.openWindowPicker.shortcut] = function(prompt_bufnr)
               -- Use nvim-window-picker to choose the window by dynamically attaching a function
               local action_set = require("telescope.actions.set")
               local action_state = require("telescope.actions.state")
@@ -125,7 +125,7 @@ return {
 
               return action_set.edit(prompt_bufnr, "edit")
             end,
-            [myKeys.telescope.togglePreview.shortcut] = actions_layout.toggle_preview,
+            [my_keys.telescope.togglePreview.shortcut] = actions_layout.toggle_preview,
           },
         },
 
@@ -149,9 +149,14 @@ return {
           mappings = {
             i = {
               -- narrow grep search by the other search criteria (filename, extension, other word in the searched file)
-              [myKeys.telescope.liveGrepFuzzyRefine.shortcut] = action_narrow_scope,
+              [my_keys.telescope.liveGrepFuzzyRefine.shortcut] = action_narrow_scope,
             },
           },
+        },
+      },
+      extensions = {
+        smart_open = {
+          match_algorithm = "fzf",
         },
       },
     },
@@ -171,17 +176,16 @@ return {
   },
 
   {
-    "MatejBransky/smart-open.nvim",
+    "danielfalk/smart-open.nvim",
     config = function()
       require("telescope").load_extension("smart_open")
     end,
     dependencies = {
       "kkharji/sqlite.lua",
       -- Only required if using match_algorithm fzf
-      -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       -- Optional. If installed, native fzy will be used when match_algorithm is fzy
       -- { "nvim-telescope/telescope-fzy-native.nvim" },
-      -- { "natecraddock/telescope-zf-native.nvim" },
     },
   },
 }

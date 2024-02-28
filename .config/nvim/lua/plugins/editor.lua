@@ -1,4 +1,15 @@
-return {
+local suite_coc = require("suite-coc")
+local suite_native = require("suite-native")
+
+local M = {}
+
+if vim.env.NVIM_SUITE_COC == "true" then
+  vim.list_extend(M, suite_coc)
+else
+  vim.list_extend(M, suite_native)
+end
+
+vim.list_extend(M, {
   -- Theme
   {
     "navarasu/onedark.nvim",
@@ -82,6 +93,7 @@ return {
       ensure_installed = {
         "css",
         "graphql",
+        "styled",
       },
     },
   },
@@ -134,16 +146,6 @@ return {
   -- * X: last command | noice.api.status.mode??? | DAP (bug icon) | LazyVim updates (packages) | git diff
   -- * Y: progress [%] | location (line:column)
   -- * Z: clocks
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      -- I don't need clocks in the statusline
-      opts.sections.lualine_z = {
-        "encoding",
-        "filetype",
-      }
-    end,
-  },
 
   -- Show filenames in windows
   {
@@ -185,4 +187,24 @@ return {
     "axkirillov/hbac.nvim",
     config = true,
   },
-}
+
+  -- Scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPost",
+    config = function()
+      local scrollbar = require("scrollbar")
+      scrollbar.setup({
+        excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
+      })
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = function()
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+  },
+})
+
+return M

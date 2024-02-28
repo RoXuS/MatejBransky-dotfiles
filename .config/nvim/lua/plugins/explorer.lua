@@ -1,5 +1,5 @@
 local renderer = require("neo-tree.ui.renderer")
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 local indexOf = function(array, value)
   for i, v in ipairs(array) do
@@ -97,8 +97,8 @@ return {
           mappings = {
             -- Find/grep for a file under the current node using Telescope and select it.
             -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#find-with-telescope
-            [myKeys.explorer.findInSelected.shortcut] = "telescope_find",
-            [myKeys.explorer.grepInSelected.shortcut] = "telescope_grep",
+            [my_keys.explorer.findInSelected.shortcut] = "telescope_find",
+            [my_keys.explorer.grepInSelected.shortcut] = "telescope_grep",
           },
         },
         commands = {
@@ -176,12 +176,12 @@ return {
           ["S"] = false,
           ["t"] = false,
 
-          [myKeys.explorer.close.shortcut] = "close_window",
-          [myKeys.explorer.prevSibling.shortcut] = { prevSibling, desc = myKeys.explorer.prevSibling.desc },
-          [myKeys.explorer.nextSibling.shortcut] = { nextSibling, desc = myKeys.explorer.nextSibling.desc },
-          [myKeys.explorer.split.shortcut] = "split_with_window_picker",
-          [myKeys.explorer.vsplit.shortcut] = "vsplit_with_window_picker",
-          [myKeys.harpoon.mark.shortcut] = {
+          [my_keys.explorer.close.shortcut] = "close_window",
+          [my_keys.explorer.prevSibling.shortcut] = { prevSibling, desc = my_keys.explorer.prevSibling.desc },
+          [my_keys.explorer.nextSibling.shortcut] = { nextSibling, desc = my_keys.explorer.nextSibling.desc },
+          [my_keys.explorer.split.shortcut] = "split_with_window_picker",
+          [my_keys.explorer.vsplit.shortcut] = "vsplit_with_window_picker",
+          [my_keys.harpoon.mark.shortcut] = {
             function(state)
               local node = state.tree:get_node()
               if node.type ~= "directory" then
@@ -189,7 +189,7 @@ return {
                 require("neo-tree.sources.manager").refresh("filesystem")
               end
             end,
-            desc = myKeys.harpoon.mark.desc,
+            desc = my_keys.harpoon.mark.desc,
           },
           -- emulate Atom's tree-view component (https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/discussions/163#discussioncomment-4747082
@@ -233,7 +233,7 @@ return {
       },
       -- Floating file explorer
       {
-        myKeys.explorer.floatingExplorer.shortcut,
+        my_keys.explorer.floatingExplorer.shortcut,
         function()
           require("neo-tree.command").execute({
             position = "float",
@@ -242,7 +242,7 @@ return {
             reveal_force_cwd = true,
           })
         end,
-        desc = myKeys.explorer.floatingExplorer.desc,
+        desc = my_keys.explorer.floatingExplorer.desc,
       },
       {
         "<leader>E",
@@ -264,23 +264,23 @@ return {
         desc = "Explorer in the sidebar",
       },
       {
-        myKeys.explorer.showSidebarExplorer.shortcut,
+        my_keys.explorer.showSidebarExplorer.shortcut,
         function()
           require("neo-tree.command").execute({
             action = "focus",
             position = "left",
           })
         end,
-        desc = myKeys.explorer.showSidebarExplorer.desc,
+        desc = my_keys.explorer.showSidebarExplorer.desc,
       },
       {
-        myKeys.explorer.hideSidebarExplorer.shortcut,
+        my_keys.explorer.hideSidebarExplorer.shortcut,
         function()
           require("neo-tree.command").execute({
             action = "close",
           })
         end,
-        desc = myKeys.explorer.hideSidebarExplorer.desc,
+        desc = my_keys.explorer.hideSidebarExplorer.desc,
       },
     },
   },

@@ -1,6 +1,0 @@
-{
-  "foo": {
-    "body": "require(\"lskj\").editSnippet()",
-    "prefix": "foo"
-  }
-}

@@ -1,4 +1,4 @@
-local myKeys = require("myKeys")
+local my_keys = require("my_keys")
 
 return {
   -- Leave my Enter, Tab and arrow keys alone!
@@ -9,7 +9,7 @@ return {
       opts.mapping = cmp.mapping.preset.insert(vim.tbl_deep_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.config.disable,
         ["<CR>"] = cmp.config.disable,
-        [myKeys.completion.accept.shortcut] = cmp.mapping.confirm({ select = true }),
+        [my_keys.completion.accept.shortcut] = cmp.mapping.confirm({ select = true }),
         ["<Up>"] = cmp.config.disable,
         ["<Down>"] = cmp.config.disable,
       }))
@@ -33,18 +33,18 @@ return {
     keys = function()
       return {
         {
-          myKeys.snippet.jumpNext.shortcut,
+          my_keys.snippet.jumpNext.shortcut,
           function()
             require("luasnip").jump(1)
           end,
-          mode = myKeys.snippet.jumpNext.mode,
+          mode = my_keys.snippet.jumpNext.mode,
         },
         {
-          myKeys.snippet.jumpPrev.shortcut,
+          my_keys.snippet.jumpPrev.shortcut,
           function()
             require("luasnip").jump(-1)
           end,
-          mode = myKeys.snippet.jumpPrev.mode,
+          mode = my_keys.snippet.jumpPrev.mode,
         },
       }
     end,
@@ -63,19 +63,19 @@ return {
     dependencies = "nvim-telescope/telescope.nvim", -- optional
     keys = {
       {
-        myKeys.snippet.add.shortcut,
+        my_keys.snippet.add.shortcut,
         function()
           require("scissors").addNewSnippet()
         end,
-        mode = myKeys.snippet.add.mode,
-        desc = myKeys.snippet.add.desc,
+        mode = my_keys.snippet.add.mode,
+        desc = my_keys.snippet.add.desc,
       },
       {
-        myKeys.snippet.edit.shortcut,
+        my_keys.snippet.edit.shortcut,
         function()
           require("scissors").editSnippet()
         end,
-        desc = myKeys.snippet.edit.desc,
+        desc = my_keys.snippet.edit.desc,
       },
     },
     opts = {
