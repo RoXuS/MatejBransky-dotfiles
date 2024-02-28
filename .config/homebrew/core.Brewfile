@@ -25,11 +25,12 @@ brew "lazygit"
 brew "cormacrelf/tap/dark-notify"
 brew "neovim"
 brew "ripgrep"
-brew "tmux"
 brew "wget"
 brew "zoxide"
 brew "diff-so-fancy"
 brew "git-trim"
+# required for the coc-tsserver LSP rename file capabality
+brew "watchman"
 
 # Dependencies for programming languages and the like
 # --------------------------------------------------
