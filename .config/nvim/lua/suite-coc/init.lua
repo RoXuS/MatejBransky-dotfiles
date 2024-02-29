@@ -1,5 +1,3 @@
-local H = require('utils.helpers')
-
 local my_keys = require("my_keys")
 
 local M = {}
@@ -228,10 +226,9 @@ table.insert(M, {
       nowait = true,
     },
 
-    -- Formatting selected code
+    -- Format
     {
       my_keys.lsp.format.shortcut,
-      -- "<Plug>(coc-format-selected)",
       "<Cmd>CocCommand prettier.formatFile<CR>",
       desc = my_keys.lsp.format.desc,
       mode = my_keys.lsp.format.mode,
@@ -254,6 +251,14 @@ table.insert(M, {
       end,
       mode = my_keys.lsp.hoverInfo.mode,
       silent = true,
+    },
+
+    -- Focus floating window
+    {
+      '<C-k>',
+      "<Plug>(coc-float-jump)",
+      mode = my_keys.lsp.hoverInfo.mode,
+      silent = true
     },
 
     -- Diagnostics
