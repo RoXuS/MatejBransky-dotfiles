@@ -95,6 +95,7 @@ return {
         },
         window = {
           mappings = {
+            ["z"] = "none",
             -- Find/grep for a file under the current node using Telescope and select it.
             -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#find-with-telescope
             [my_keys.explorer.findInSelected.shortcut] = "telescope_find",
