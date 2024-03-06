@@ -4,6 +4,9 @@
 
 local my_keys = require("my_keys")
 
+vim.keymap.set("i", "=", "=<c-g>u")
+vim.keymap.set("i", ":", ":<c-g>u")
+
 vim.keymap.set(
   my_keys.misc.deleteBlackHole.mode,
   my_keys.misc.deleteBlackHole.shortcut,
