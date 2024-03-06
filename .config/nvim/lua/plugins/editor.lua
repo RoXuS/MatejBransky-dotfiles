@@ -193,12 +193,12 @@ vim.list_extend(M, {
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
-    config = function()
-      local scrollbar = require("scrollbar")
-      scrollbar.setup({
-        excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
-      })
-    end,
+    opts = {
+      excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
+      handlers = {
+        cursor = false,
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
