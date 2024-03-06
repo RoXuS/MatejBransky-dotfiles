@@ -206,6 +206,18 @@ vim.list_extend(M, {
       require("scrollbar.handlers.gitsigns").setup()
     end,
   },
+
+  {
+    "echasnovski/mini.animate",
+    opts = {
+      cursor = {
+        enable = false,
+      },
+      scroll = {
+        timing = require("mini.animate").gen_timing.cubic({ easing = "in-out", duration = 150, unit = "total" }),
+      },
+    },
+  },
 })
 
 return M
