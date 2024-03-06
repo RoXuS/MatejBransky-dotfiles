@@ -255,7 +255,7 @@ table.insert(M, {
 
     -- Focus floating window
     {
-      '<C-k>',
+      '<C-w>f',
       "<Plug>(coc-float-jump)",
       mode = my_keys.lsp.hoverInfo.mode,
       silent = true
