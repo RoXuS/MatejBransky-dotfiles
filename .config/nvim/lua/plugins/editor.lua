@@ -1,13 +1,14 @@
-local suite_coc = require("suite-coc")
+-- local suite_coc = require("suite-coc")
 local suite_native = require("suite-native")
 
 local M = {}
 
-if vim.env.NVIM_SUITE_COC == "true" then
-  vim.list_extend(M, suite_coc)
-else
-  vim.list_extend(M, suite_native)
-end
+-- I had to disable it because the prettier formatter didn't work in the native suite
+-- if vim.env.NVIM_SUITE_COC == "true" then
+--   vim.list_extend(M, suite_coc)
+-- else
+vim.list_extend(M, suite_native)
+-- end
 
 vim.list_extend(M, {
   -- Theme
