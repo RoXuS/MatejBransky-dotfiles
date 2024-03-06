@@ -90,7 +90,7 @@ return {
         -- so `fi init` will match: `./sources/filesystem/init.lua`
         find_by_full_path_words = true,
         follow_current_file = {
-          enabled = false,
+          enabled = true,
           leave_dirs_open = true,
         },
         window = {
