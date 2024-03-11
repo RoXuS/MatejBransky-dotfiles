@@ -1,0 +1,78 @@
+# $XDG_CONFIG_HOME/k9s/plugins.yaml
+plugins:
+  # Sends logs over to jq for processing. This leverages kubectl plugin kubectl-jq.
+  jqlogs:
+    shortCut: Ctrl-J
+    confirm: false
+    description: "Logs (jq)"
+    scopes:
+      - pod
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl logs -f $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line'"
+  yqlogs:
+    shortCut: Ctrl-Y
+    confirm: false
+    description: "Logs (yq)"
+    scopes:
+      - pod
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl logs -f $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line' | yq -p=json"
+  raw-logs-follow:
+    shortCut: Ctrl-L
+    description: logs -f
+    scopes:
+      - po
+    command: kubectl
+    background: false
+    args:
+      - logs
+      - -f
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+  log-less:
+    shortCut: Shift-L
+    description: "logs|less"
+    scopes:
+      - po
+    command: bash
+    background: false
+    args:
+      - -c
+      - '"$@" | less'
+      - dummy-arg
+      - kubectl
+      - logs
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+  log-to-file-jq:
+    shortCut: Ctrl-O
+    description: "Save log to file (jq)"
+    scopes:
+      - po
+    command: sh
+    background: true
+    args:
+      - -c
+      - kubectl logs $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line' > $NAME.log
+  log-to-file:
+    shortCut: Ctrl-P
+    description: "Save log to file"
+    scopes:
+      - po
+    command: sh
+    background: true
+    args:
+      - -c
+      - kubectl logs $NAME -n $NAMESPACE --context $CONTEXT > $NAME.log
