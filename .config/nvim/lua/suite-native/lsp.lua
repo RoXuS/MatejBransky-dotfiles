@@ -1,8 +1,21 @@
+local H = require("utils.helpers")
 local my_keys = require("my_keys")
 
 return {
   {
+    "folke/neoconf.nvim",
+    opts = {
+      import = {
+        vscode = false,
+        coc = false,
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "folke/neoconf.nvim",
+    },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
@@ -30,7 +43,12 @@ return {
       )
     end,
     opts = {
+      diagnostics = {
+        -- disable inline diagnostic messages
+        virtual_text = false,
+      },
       setup = {
+
         eslint = function(_, opts)
           opts.filetypes = {
             "javascript",
@@ -50,6 +68,15 @@ return {
         graphql = {
           filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" },
         },
+        -- I moved this to project-specific config files (<project-dir>/.lazy.lua)
+        -- tsserver = {
+        --   init_options = {
+        --     preferences = {
+        --       importModuleSpecifierPreference = "non-relative",
+        --       importModuleSpecifierEnding = "minimal",
+        --     },
+        --   },
+        -- },
       },
     },
   },
@@ -101,16 +128,6 @@ return {
         hover = {
           silent = true, -- set to true to not show a message if hover is not available
         },
-      },
-    },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      diagnostics = {
-        -- disable inline diagnostic messages
-        virtual_text = false,
       },
     },
   },

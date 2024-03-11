@@ -1,0 +1,18 @@
+{
+  "cc": {
+    "body": [
+      "type $1Props = {",
+      "  $2",
+      "}",
+      "",
+      "const ${1:MyComp} = (props: $1Props) => {",
+      "  return $3",
+      "}"
+    ],
+    "prefix": "cc"
+  },
+  "log": {
+    "body": "console.log($1)",
+    "prefix": "log"
+  }
+}
