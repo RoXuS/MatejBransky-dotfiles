@@ -27,8 +27,6 @@ alias df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # LazyGit with the dotfiles context
 alias ldf='/opt/homebrew/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-alias nv='NVIM_SUITE_COC=true nvim'
-
 gbd() {
   # https://stackoverflow.com/a/33548037/10735867
   git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
