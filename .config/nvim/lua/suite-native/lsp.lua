@@ -47,23 +47,7 @@ return {
         -- disable inline diagnostic messages
         virtual_text = false,
       },
-      setup = {
 
-        eslint = function(_, opts)
-          opts.filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-            "vue",
-            "svelte",
-            "astro",
-            "graphql",
-          }
-        end,
-      },
       servers = {
         graphql = {
           filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" },
