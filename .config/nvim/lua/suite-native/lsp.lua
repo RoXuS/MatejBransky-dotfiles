@@ -49,8 +49,6 @@ return {
       },
 
       servers = {
-        graphql = {
-          filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" },
         eslint = {
           -- INFO: root_dir v1: look for the package.json first (mostly the root dir)
           --
@@ -97,7 +95,13 @@ return {
           --   end
           -- end,
         },
-        -- I moved this to project-specific config files (<project-dir>/.lazy.lua)
+        graphql = {
+          -- narrow eslint-graphql detection
+          filetypes = { "graphql" },
+        },
+
+        -- INFO: I moved this to project-specific config files (<project-dir>/.lazy.lua)
+        --
         -- tsserver = {
         --   init_options = {
         --     preferences = {
@@ -109,6 +113,7 @@ return {
       },
     },
   },
+  -- INFO: issue with stale diagnostics (https://github.com/pmizio/typescript-tools.nvim/issues/202)
   -- {
   --   "pmizio/typescript-tools.nvim",
   --   ft = { "typescript", "typescriptreact" },
@@ -144,6 +149,7 @@ return {
   --     },
   --   },
   -- },
+
   -- Reduce UI noice
   {
     "folke/noice.nvim",
