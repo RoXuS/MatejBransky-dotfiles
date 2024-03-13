@@ -67,6 +67,51 @@ return {
       servers = {
         graphql = {
           filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript" },
+        eslint = {
+          -- INFO: root_dir v1: look for the package.json first (mostly the root dir)
+          --
+          -- This solution might be problematic in the case of published Nx modules
+          -- that have their own package.json but their .eslintrc* file might still reference
+          -- the root .eslintrc*.
+          root_dir = function(filename, bufnr)
+            local lspconfig_util = require("lspconfig.util")
+            local find_root_dir = lspconfig_util.root_pattern("package.json", ".git", ".eslintrc*")
+            local found_root_dir = find_root_dir(filename)
+            -- if the root dir wasn't found fallback to the cwd
+            return found_root_dir or vim.fn.getcwd()
+          end,
+
+          -- INFO: root_dir v2: better for Nx monorepos, worse for monorepos without root-dependent ESLint configs
+          --
+          -- root_dir_v2 = require('lspconfig.util').root_pattern('.git')
+
+          -- INFO: root_dir v3: attempt to resolve the root dir cleverly (unfinished)
+          --
+          -- root_dir_v3 = function(filename, bufnr)
+          --   local lspconfig_util = require("lspconfig.util")
+          --   local find_root_dir = lspconfig_util.root_pattern("package.json", ".git", ".eslintrc*")
+          --   local found_root_dir = find_root_dir(filename)
+          --
+          --   local eslintrc_dir = lspconfig_util.root_pattern(".eslintr*")(filename)
+          --   local eslintrc_file = eslintrc_dir .. "/.eslintrc.json"
+          --
+          --   -- vim.print("eslintrc_file: " .. eslintrc_file)
+          --
+          --   local eslintrc = vim.fn.readblob(eslintrc_file)
+          --   -- vim.print("eslintrc" .. eslintrc)
+          --   local json_content = vim.fn.json_decode(eslintrc)
+          --   local extendsStrOrList = json_content.extends
+          --   vim.print(extendsStrOrList)
+          --
+          --   if type(extendsStrOrList) == "string" then
+          --     vim.print("relative extend (string): " .. vim.startswith(extendsStrOrList, "../"))
+          --   else
+          --     for _, item in ipairs(extendsStrOrList) do
+          --       local relativePath = vim.startswith(extendsStrOrList[1], "../")
+          --       vim.print("relative extend (list item): " .. (relativePath and "yes" or "no"))
+          --     end
+          --   end
+          -- end,
         },
         -- I moved this to project-specific config files (<project-dir>/.lazy.lua)
         -- tsserver = {
