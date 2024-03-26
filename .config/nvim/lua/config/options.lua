@@ -10,3 +10,7 @@ vim.filetype.add({
     mdx = "markdown",
   },
 })
+
+-- **lazygit** now automatically uses the colors of your current colorscheme.
+-- This is enabled by default. To disable, add the below to your `options.lua`
+vim.g.lazygit_theme = false
