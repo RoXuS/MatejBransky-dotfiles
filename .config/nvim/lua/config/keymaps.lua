@@ -56,6 +56,8 @@ vim.keymap.set(
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
+vim.keymap.set("n", "H", "<Nop>", { remap = false })
+vim.keymap.set("n", "L", "<Nop>", { remap = false })
 vim.keymap.set("n", "J", "5j", { desc = "big move down" })
 vim.keymap.set("n", "K", "5k", { desc = "big move up", remap = false })
 
