@@ -312,7 +312,7 @@ local keys = {
     outlineSymbols = {
       desc = "Outline symbols",
       mode = "n",
-      shortcut = "<leader>co"
+      shortcut = "<leader>co",
     },
     renameSymbol = {
       desc = "Rename symbol",
@@ -337,7 +337,7 @@ local keys = {
     hoverInfo = {
       desc = "Show info",
       mode = "n",
-      shortcut = "K",
+      shortcut = "H",
     },
     log = {
       desc = "LSP logs",
@@ -357,7 +357,7 @@ local keys = {
     format = {
       desc = "Format",
       mode = { "x", "n" },
-      shortcut = "<leader>cf"
+      shortcut = "<leader>cf",
     },
     organizeImports = {
       desc = "Organize imports",

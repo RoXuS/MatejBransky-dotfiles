@@ -51,3 +51,14 @@ vim.keymap.set(
   [[:s/\%V]],
   { desc = my_keys.searchReplace.substiteSubstring.desc }
 )
+
+-- keep cursor in the center while "scrolling"
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
+vim.keymap.set("n", "J", "5j", { desc = "big move down" })
+vim.keymap.set("n", "K", "5k", { desc = "big move up", remap = false })
+
+-- ...this constantly irritating mistake of inadvertently executing the macro recording... :angry:
+vim.keymap.set("n", "<leader>m", "q", { desc = "Start macro recording", remap = false })
+vim.keymap.set("n", "q", "<Nop>", { remap = false })

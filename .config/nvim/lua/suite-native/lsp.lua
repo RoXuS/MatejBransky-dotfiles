@@ -19,6 +19,9 @@ return {
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
+      -- first I have to disable the default hover shortcut so I can my custom
+      keys[#keys + 1] = { "K", false }
+      -- then I can map it to the desired one
       keys[#keys + 1] = { my_keys.lsp.hoverInfo.shortcut, vim.lsp.buf.hover, desc = my_keys.lsp.hoverInfo.desc }
 
       vim.keymap.set(my_keys.lsp.log.mode, my_keys.lsp.log.shortcut, "<Cmd>LspLog<CR>", { desc = my_keys.lsp.log.desc })
