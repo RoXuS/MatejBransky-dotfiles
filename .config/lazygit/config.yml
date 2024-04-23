@@ -4,8 +4,6 @@ gui:
     selectedLineBgColor:
       - reverse # set to `default` to have no background colour
       - bold
-    selectedRangeBgColor:
-      - reverse
 os:
   # source: https://github.com/LazyVim/LazyVim/discussions/543#discussioncomment-5808573
   edit: "nvim --server $NVIM --remote-tab {{filename}}"
@@ -15,6 +13,15 @@ git:
     colorArg: always
     useConfig: true
 customCommands:
+  - key: "<c-c>"
+    description: "Commit --no-verify"
+    prompts:
+      - type: "input"
+        title: "Commit"
+        initialValue: ""
+    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
+    context: global
+    subprocess: true
   - key: "<c-d>"
     description: "Reset to the remote branch"
     command: "git reset --hard origin/{{.CheckedOutBranch.Name}}"
