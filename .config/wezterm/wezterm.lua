@@ -14,7 +14,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.hyperlink_rules = open_in_nvim.hyperlink_rules
+config.hyperlink_rules = open_in_nvim.config.hyperlink_rules
+config.quick_select_patterns = open_in_nvim.config.quick_select_patterns
 
 config.keys = keymaps.keys
 config.key_tables = keymaps.key_tables

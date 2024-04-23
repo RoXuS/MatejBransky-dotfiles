@@ -3,7 +3,9 @@ local os = require("os")
 local io = require("io")
 local wezterm = require("wezterm")
 
-local config = {}
+local M = {
+	config = {},
+}
 
 local function get_last_focused_nvim()
 	-- keep in sync with the autocmd.lua file at the neovim config
@@ -96,13 +98,15 @@ local function extract_line_and_name(uri)
 	return nil, nil
 end
 
-local function open_in_nvim(full_path, line, server_id)
+local function open_file_in_nvim(full_path, line, server_id)
 	local nvim_command = string.format("<C-\\><C-N>:e %s<CR>:normal %dG<CR>", full_path, line)
 	wezterm.run_child_process({ "/opt/homebrew/bin/nvim", "--server", server_id, "--remote-send", nvim_command })
 end
 
-wezterm.on("open-uri", function(window, pane, uri)
+M.open_in_nvim = function(window, pane, uri)
 	local line, name = extract_line_and_name(uri)
+
+	wezterm.log_info("uri", uri, line, name)
 
 	if name then
 		local pwd = get_pwd(pane)
@@ -148,7 +152,7 @@ wezterm.on("open-uri", function(window, pane, uri)
 
 		if chosen_nvim_pane then
 			wezterm.log_info("chosen nvim pane", chosen_nvim_pane)
-			open_in_nvim(full_path, line, chosen_nvim_pane.server_id)
+			open_file_in_nvim(full_path, line, chosen_nvim_pane.server_id)
 			chosen_nvim_pane.pane:activate()
 		end
 
@@ -160,9 +164,13 @@ wezterm.on("open-uri", function(window, pane, uri)
 	if uri:find("mailto:") == 1 then
 		return false -- disable opening email
 	end
+end
+
+wezterm.on("open-uri", function(window, pane, uri)
+	M.open_in_nvim(window, pane, uri)
 end)
 
-config.hyperlink_rules = {
+M.config.hyperlink_rules = {
 	-- These are the default rules, but you currently need to repeat
 	-- them here when you define your own rules, as your rules override
 	-- the defaults
@@ -193,4 +201,8 @@ config.hyperlink_rules = {
 	},
 }
 
-return config
+M.config.quick_select_patterns = {
+	"[/.A-Za-z0-9_-]+\\.[A-Za-z0-9]+(:\\d+)*(?=\\s*|$)",
+}
+
+return M

@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local open_in_nvim = require("open-in-nvim")
 
 local function create_pane_mappings(config)
 	local focus_action = {
@@ -69,6 +70,22 @@ table.insert(M.keys, {
 			local url = window:get_selection_text_for_pane(pane)
 			wezterm.log_info("opening: " .. url)
 			wezterm.open_with(url)
+		end),
+	}),
+})
+
+table.insert(M.keys, {
+	key = "p",
+	mods = "SUPER",
+	action = wezterm.action.QuickSelectArgs({
+		patterns = {
+			-- "[/.A-Za-z0-9_-]+\\.[A-Za-z0-9]+(:\\d+)*(?=\\s*|$)",
+			[[[/.A-Za-z0-9_-]+\.[A-Za-z0-9]+[:\d+]*(?=\s*|$)]],
+		},
+		action = wezterm.action_callback(function(window, pane)
+			local path = window:get_selection_text_for_pane(pane)
+			wezterm.log_info("opening: " .. path)
+			open_in_nvim.open_in_nvim(window, pane, "$EDITOR:" .. path)
 		end),
 	}),
 })
