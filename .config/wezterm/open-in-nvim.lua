@@ -2,6 +2,7 @@
 local os = require("os")
 local io = require("io")
 local wezterm = require("wezterm")
+local utils = require("utils")
 
 local M = {
 	config = {},
@@ -142,8 +143,10 @@ M.open_in_nvim = function(window, pane, uri)
 
 						-- table.insert(nvim_panes, nvim_pane)
 
-						-- TODO: handle the scenario where the terminal's CWD is a subdirectory of the Neovim instance's CWD
-						if nvim_pane.cwd == pwd and not (chosen_nvim_pane and chosen_nvim_pane.last_focused) then
+						if
+							utils.is_subpath(nvim_pane.cwd, pwd)
+							and not (chosen_nvim_pane and chosen_nvim_pane.last_focused)
+						then
 							chosen_nvim_pane = nvim_pane
 						end
 					end
