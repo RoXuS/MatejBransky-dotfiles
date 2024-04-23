@@ -21,6 +21,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Created by `pipx` on 2023-03-24 18:21:46
 export PATH="$PATH:$HOME/.local/bin"
 
+# fzf - respecting .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# to apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 alias lg='lazygit'
 # Git with the dotfiles context
 alias df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
