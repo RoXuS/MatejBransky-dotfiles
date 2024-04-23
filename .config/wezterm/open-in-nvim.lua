@@ -142,6 +142,7 @@ M.open_in_nvim = function(window, pane, uri)
 
 						-- table.insert(nvim_panes, nvim_pane)
 
+						-- TODO: handle the scenario where the terminal's CWD is a subdirectory of the Neovim instance's CWD
 						if nvim_pane.cwd == pwd and not (chosen_nvim_pane and chosen_nvim_pane.last_focused) then
 							chosen_nvim_pane = nvim_pane
 						end
@@ -149,6 +150,8 @@ M.open_in_nvim = function(window, pane, uri)
 				end
 			end
 		end
+
+		-- wezterm.log_info('nvim_panes', nvim_panes)
 
 		if chosen_nvim_pane then
 			wezterm.log_info("chosen nvim pane", chosen_nvim_pane)
