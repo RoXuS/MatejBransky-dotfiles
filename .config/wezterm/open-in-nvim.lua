@@ -125,7 +125,7 @@ M.open_in_nvim = function(window, pane, uri)
 		-- local nvim_panes = {}
 		local chosen_nvim_pane = nil
 
-		-- focus the first found pane with the Neovim instance
+		-- gather infos from all neovim instances in the active tab
 		for _, pane in ipairs(window:active_tab():panes()) do
 			local process_info = pane:get_foreground_process_info()
 
