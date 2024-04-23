@@ -11,8 +11,16 @@
     ],
     "prefix": "cc"
   },
+  "dt": {
+    "body": "datasetTransformations",
+    "prefix": "dt"
+  },
   "log": {
     "body": "console.log($1)",
     "prefix": "log"
+  },
+  "tra": {
+    "body": "t({ id: 'datasetTransformations.$2', message: '$1' })",
+    "prefix": "tra"
   }
 }

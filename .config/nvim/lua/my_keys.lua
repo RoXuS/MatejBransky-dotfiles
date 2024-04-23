@@ -43,10 +43,15 @@ local keys = {
       mode = { "n", "v" },
       shortcut = "<M-d>",
     },
-    openFolderInFinder = {
-      desc = "Open parent directory in Finder",
+    diffWin = {
+      desc = "Diff windows",
       mode = "n",
-      shortcut = "<leader>of",
+      shortcut = "<leader>dw",
+    },
+    diffWinQuit = {
+      desc = "Quit diff windows",
+      mode = "n",
+      shortcut = "<leader>dq",
     },
   },
 
@@ -158,6 +163,12 @@ local keys = {
       mode = "n",
       shortcut = "<M-,>",
     },
+    recentFilesCwd = {
+      title = "Recent files (cwd)",
+      desc = "Show recently used files (cwd)",
+      mode = "n",
+      shortcut = "<M-<>",
+    },
     liveGrepFuzzyRefine = {
       desc = "Fuzzy refine the searched expression",
       mode = "i",
@@ -209,25 +220,46 @@ local keys = {
       mode = "n",
       shortcut = "<leader>gq",
     },
-    copyFilepath = {
-      desc = "Copy path to the current file",
+  },
+
+  --
+  -- Misc reference operations
+  --
+  references = {
+    openInFinder = {
+      desc = "Open parent directory in Finder",
       mode = "n",
-      shortcut = "<leader>go",
+      shortcut = "<leader>oe",
     },
     openInBrowser = {
       desc = "Open file in the browser",
       mode = "n",
-      shortcut = "<leader>gb",
+      shortcut = "<leader>oo",
+    },
+    copyUrl = {
+      desc = "Copy repo url",
+      mode = "n",
+      shortcut = "<leader>ou",
+    },
+    copyBranchname = {
+      desc = "Copy branch name",
+      mode = "n",
+      shortcut = "<leader>ob",
+    },
+    copyFilepath = {
+      desc = "Copy path to the current file",
+      mode = "n",
+      shortcut = "<leader>op",
     },
     copyFileLink = {
       desc = "Copy link to the current file",
       mode = { "n", "v" },
-      shortcut = "<leader>gf",
+      shortcut = "<leader>of",
     },
     copyLineLink = {
       desc = "Copy link to the current line/range",
       mode = { "n", "v" },
-      shortcut = "<leader>gl",
+      shortcut = "<leader>ol",
     },
   },
 
@@ -307,7 +339,7 @@ local keys = {
     showDiagWindow = {
       desc = "Show diag. in a floating window.",
       mode = "n",
-      shortcut = "<leader>k",
+      shortcut = "<leader>h",
     },
     outlineSymbols = {
       desc = "Outline symbols",

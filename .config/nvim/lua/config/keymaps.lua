@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local which_key = require("which-key")
 local my_keys = require("my_keys")
 
 vim.keymap.set("i", "=", "=<c-g>u")
@@ -15,10 +16,10 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  my_keys.misc.openFolderInFinder.mode,
-  my_keys.misc.openFolderInFinder.shortcut,
+  my_keys.references.openInFinder.mode,
+  my_keys.references.openInFinder.shortcut,
   ":!open %:h<CR>",
-  { desc = my_keys.misc.openFolderInFinder.desc }
+  { desc = my_keys.references.openInFinder.desc }
 )
 
 -- search for visually selected text
@@ -64,3 +65,19 @@ vim.keymap.set("n", "K", "5k", { desc = "big move up", remap = false })
 -- ...this constantly irritating mistake of inadvertently executing the macro recording... :angry:
 vim.keymap.set("n", "<leader>m", "q", { desc = "Start macro recording", remap = false })
 vim.keymap.set("n", "q", "<Nop>", { remap = false })
+
+which_key.register({
+  ["<leader>d"] = "diffWin",
+})
+vim.keymap.set(
+  my_keys.misc.diffWin.mode,
+  my_keys.misc.diffWin.shortcut,
+  "<Cmd>windo diffthis<CR>",
+  { desc = my_keys.misc.diffWin.desc }
+)
+vim.keymap.set(
+  my_keys.misc.diffWinQuit.mode,
+  my_keys.misc.diffWinQuit.shortcut,
+  "<Cmd>diffoff!<CR>",
+  { desc = my_keys.misc.diffWinQuit.desc }
+)

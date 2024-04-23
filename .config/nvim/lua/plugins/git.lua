@@ -4,32 +4,37 @@ return {
   {
     "tpope/vim-fugitive",
     config = function()
-      vim.keymap.set(
-        my_keys.git.copyFilepath.mode,
-        my_keys.git.copyFilepath.shortcut,
-        ":<C-U>call setreg(v:register, fugitive#Object(@%))<CR>",
-        { desc = "Copy file path", silent = true }
-      )
+      vim.keymap.set(my_keys.references.copyFilepath.mode, my_keys.references.copyFilepath.shortcut, function()
+        local git_root = vim.fn.FugitiveWorkTree()
+        local relative_path = vim.fn.expand("%:.")
+
+        if git_root ~= "" then
+          local abs_path = vim.fn.expand("%:p")
+          relative_path = require("plenary.path"):new(abs_path):make_relative(git_root)
+        end
+
+        vim.fn.setreg("*", relative_path)
+      end, { desc = my_keys.references.copyFilepath.desc, silent = true })
 
       vim.keymap.set(
-        my_keys.git.openInBrowser.mode,
-        my_keys.git.openInBrowser.shortcut,
+        my_keys.references.openInBrowser.mode,
+        my_keys.references.openInBrowser.shortcut,
         "<Cmd>GBrowse<CR>",
-        { desc = my_keys.git.openInBrowser.desc }
+        { desc = my_keys.references.openInBrowser.desc }
       )
 
       vim.keymap.set(
-        my_keys.git.copyFileLink.mode,
-        my_keys.git.copyFileLink.shortcut,
+        my_keys.references.copyFileLink.mode,
+        my_keys.references.copyFileLink.shortcut,
         "<Cmd>GBrowse!<CR>",
-        { desc = my_keys.git.copyFileLink.desc }
+        { desc = my_keys.references.copyFileLink.desc }
       )
 
       vim.keymap.set(
-        my_keys.git.copyLineLink.mode,
-        my_keys.git.copyLineLink.shortcut,
+        my_keys.references.copyLineLink.mode,
+        my_keys.references.copyLineLink.shortcut,
         ":.GBrowse!<CR>",
-        { desc = my_keys.git.copyLineLink.desc, silent = true }
+        { desc = my_keys.references.copyLineLink.desc, silent = true }
       )
     end,
   },
@@ -51,6 +56,18 @@ return {
       { my_keys.git.branchHistory.shortcut, ":DiffviewFileHistory<CR>", desc = my_keys.git.branchHistory.desc },
       { my_keys.git.fileHistory.shortcut, ":DiffviewFileHistory %<CR>", desc = my_keys.git.fileHistory.desc },
       { my_keys.git.closeHistory.shortcut, ":tabclose<CR>", desc = my_keys.git.closeHistory.desc },
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    keys = {
+      {
+        "<leader>gl",
+        function()
+          require("gitsigns.actions").toggle_current_line_blame()
+        end,
+        desc = "Toggle current line blame",
+      },
     },
   },
 }

@@ -82,11 +82,24 @@ return {
       {
         my_keys.telescope.recentFiles.shortcut,
         function()
+          local worktree = vim.fn.FugitiveWorkTree()
+          local cwd = vim.fn.getcwd()
+
           return require("telescope").extensions.smart_open.smart_open({
+            cwd = worktree ~= "" and worktree or cwd,
             cwd_only = true,
           })
         end,
         desc = my_keys.telescope.recentFiles.desc,
+      },
+      {
+        my_keys.telescope.recentFilesCwd.shortcut,
+        function()
+          return require("telescope").extensions.smart_open.smart_open({
+            cwd_only = true,
+          })
+        end,
+        desc = my_keys.telescope.recentFilesCwd.desc,
       },
     },
     opts = {
@@ -176,7 +189,7 @@ return {
   },
 
   {
-    "danielfalk/smart-open.nvim",
+    "MatejBransky/smart-open.nvim",
     config = function()
       require("telescope").load_extension("smart_open")
     end,
@@ -187,5 +200,30 @@ return {
       -- Optional. If installed, native fzy will be used when match_algorithm is fzy
       -- { "nvim-telescope/telescope-fzy-native.nvim" },
     },
+  },
+  -- text-case conversion
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+    end,
+    keys = {
+      "ga", -- Default invocation prefix
+      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+    },
+    cmd = {
+      -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
+      "Subs",
+      "TextCaseOpenTelescope",
+      "TextCaseOpenTelescopeQuickChange",
+      "TextCaseOpenTelescopeLSPChange",
+      "TextCaseStartReplacingCommand",
+    },
+    -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
+    -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
+    -- available after the first executing of it or after a keymap of text-case.nvim has been used.
+    lazy = false,
   },
 }
