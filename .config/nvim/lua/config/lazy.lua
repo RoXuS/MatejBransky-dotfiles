@@ -8,22 +8,25 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 local use_coc_suite = vim.env.NVIM_SUITE_COC == "true"
 
+local log_mode = vim.env.NVIM_LOG_MODE == "true"
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    { import = "lazyvim.plugins.extras.lang.typescript", enabled = not use_coc_suite },
-    { import = "lazyvim.plugins.extras.linting.eslint", enabled = not use_coc_suite },
-    { import = "lazyvim.plugins.extras.formatting.prettier", enabled = not use_coc_suite },
+    { import = "lazyvim.plugins.extras.lang.typescript", enabled = not use_coc_suite or not log_mode },
+    { import = "lazyvim.plugins.extras.linting.eslint", enabled = not use_coc_suite or not log_mode },
+    { import = "lazyvim.plugins.extras.formatting.prettier", enabled = not use_coc_suite or not log_mode },
     { import = "lazyvim.plugins.extras.lang.json", enabled = not use_coc_suite },
     -- { import = "lazyvim.plugins.extras.lang.go" },
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
-    { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
     { import = "suite-coc", enabled = use_coc_suite },
     { import = "suite-native", enabled = not use_coc_suite },
+    { import = "log-mode", enabled = log_mode },
     -- this allows to override nvim/plugins configs locally with the `<project-dir>/.lazy.lua` file
     { import = "lazyvim.plugins.extras.lazyrc" },
   },
