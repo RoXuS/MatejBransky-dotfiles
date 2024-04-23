@@ -58,7 +58,7 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 # Function to set the tab title during command execution
 function preexec() {
-    print -Pn "\e]0;%~ ($1)\a"
+  print -Pn "\e]0;%~•$1\a"
 }
 
 # Function to set the tab title after command completion
