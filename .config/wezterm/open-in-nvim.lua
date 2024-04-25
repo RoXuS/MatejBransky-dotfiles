@@ -111,7 +111,7 @@ M.open_in_nvim = function(window, pane, uri)
 
 	if name then
 		local pwd = get_pwd(pane)
-		local full_path = pwd .. "/" .. name
+		local full_path = name:match("^/") and name or pwd .. "/" .. name
 
 		wezterm.log_info("pwd" .. pwd)
 
