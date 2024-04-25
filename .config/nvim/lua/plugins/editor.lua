@@ -363,4 +363,13 @@ return {
   {
     "fei6409/log-highlight.nvim",
   },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        svg = { "xmlformat" },
+      },
+    },
+  },
 }
