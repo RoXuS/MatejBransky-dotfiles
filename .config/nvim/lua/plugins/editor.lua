@@ -277,16 +277,22 @@ return {
               end
             end,
           },
-          -- Git worktree name
+          -- Git worktree name 󰊢 | Git-project folder name  | CWD folder name 
           {
             function()
+              local cwd_root = LazyVim.root.get()
+              local git_root = vim.fs.find(".git", { path = cwd_root, upward = true })[1]
               local worktree_name, worktree_match = vim.fn.FugitiveGitDir():gsub(".*worktrees/", "")
+
               if worktree_match == 1 then
-                -- return res .. "  "
                 return worktree_name .. " 󰊢"
-              else
-                return ""
               end
+
+              if git_root then
+                return vim.fn.fnamemodify(git_root, ":h:t") .. " "
+              end
+
+              return vim.fn.fnamemodify(cwd_root, ":t") .. " "
             end,
           },
         },
@@ -309,6 +315,7 @@ return {
         "git",
         "nofile",
         "fugitiveblame",
+        "DiffviewFiles",
       }
 
       -- simplify global statusline
