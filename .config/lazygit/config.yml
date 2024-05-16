@@ -13,14 +13,26 @@ git:
     colorArg: always
     useConfig: true
 customCommands:
-  - key: "<c-c>"
+  # - key: <c-f>
+  #   description: Fetch branch
+  #   context: localBranches
+  #   command: git fetch origin {{.SelectedLocalBranch.Name}}:{{.SelectedLocalBranch.Name}}
+  - key: "<c-b>"
+    description: "Rebase -Xours"
+    context: localBranches
+    command: git rebase -Xours {{.SelectedLocalBranch.Name}}
+    prompts:
+      - type: confirm
+        title: Rebase on {{.SelectedLocalBranch.Name}}
+        body: "Are you sure you want to execute: git rebase -Xours {{.SelectedLocalBranch.Name}}?"
+  - key: "<c-n>"
     description: "Commit --no-verify"
     prompts:
       - type: "input"
         title: "Commit"
         initialValue: ""
     command: git commit -m "{{index .PromptResponses 0}}" --no-verify
-    context: global
+    context: commits
     subprocess: true
   - key: "<c-d>"
     description: "Reset to the remote branch"
