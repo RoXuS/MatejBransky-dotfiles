@@ -56,6 +56,8 @@ return {
       { my_keys.git.branchHistory.shortcut, ":DiffviewFileHistory<CR>", desc = my_keys.git.branchHistory.desc },
       { my_keys.git.fileHistory.shortcut, ":DiffviewFileHistory %<CR>", desc = my_keys.git.fileHistory.desc },
       { my_keys.git.closeHistory.shortcut, ":tabclose<CR>", desc = my_keys.git.closeHistory.desc },
+      { "<leader>gu", ":DiffviewOpen --imply-local<CR>", desc = "Uncommited changes" },
+      { "<leader>gr", ":DiffviewOpen origin/", desc = "Review PR" },
     },
   },
   {
