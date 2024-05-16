@@ -1,0 +1,93 @@
+lastupdatecheck: 0
+recentrepos:
+- /Users/Matej.Bransky
+- /Users/Matej.Bransky/projects/fe/feature
+- /Users/Matej.Bransky/projects/fe/hotfix
+- /Users/Matej.Bransky/projects/fe/view
+- /Users/Matej.Bransky/projects/helm
+- /Users/Matej.Bransky/projects/_github/utilize-bare/feature
+- /Users/Matej.Bransky/projects/_github/utilize-bare/hotfix
+- /Users/Matej.Bransky/projects/_github/utilize-bare/view
+- /Users/Matej.Bransky/projects/fe-bare/playground
+- /Users/Matej.Bransky/projects/_github/smart-open.nvim
+- /Users/Matej.Bransky/projects/_github/programming-notes
+- /Users/Matej.Bransky/.local/share/nvim/lazy/nvim-notify
+- /Users/Matej.Bransky/projects/_github/nvim-notify
+- /Users/Matej.Bransky/projects/_github/reactflow
+- /Users/Matej.Bransky/projects/_playground/vars
+- /Users/Matej.Bransky/projects/mdm-config-api
+- /Users/Matej.Bransky/projects/_github/graphql-example
+- /Users/Matej.Bransky/projects/_github/utilize
+- /Users/Matej.Bransky/projects/_github/ddd-playground
+- /Users/Matej.Bransky/projects/mdm-e2e-tests
+- /Users/Matej.Bransky/projects/mdm
+startuppopupversion: 5
+lastversion: 0.41.0
+customcommandshistory:
+- git fetch origin main
+- git rebase -Xours main
+- pnpm changeset add --empty
+- pnpm changeset status
+- 'ONE-0000: foobar'
+- git ls-remote --heads origin
+- git rebase -Xours core/master
+- git rebase -Xours ONE-54714-dt-step-interactions
+- git checkout -b ONE-55315-dt-step-text-selection core/master
+- git push --set-upstream core ONE-54714-dt-step-interactions
+- git checkout -b dt-step-interactions core/master
+- git checkout -b dt-autorenaming-step core/master
+- git checkout -b dt-autorenaming-step
+- git rebase -Xours ONE-53336-dt-step-interactions
+- git rebase ONE-53336-dt-step-interactions
+- git remote set-head origin --auto
+- git push --set-upstream saas ONE-53333-cherry-pick
+- git push --set-upstream saas ONE-53333-dt-data-preview-imprvmnts
+- git checkout saas/ONE-53333-dt-data-preview-imprvmnts
+- git remote -v
+- git remote
+- git checkout -b ONE-53333-dt-data-preview-imprvmnts saas/main
+- git reset --hard head~3
+- git rebase -Xours ONE-49596-mdm-config-init
+- git checkout c72a054e
+- git rebase -Xours ONE-47316-merge-check
+- git rebase -Xours ONE-47233-merge-check-script
+- git rebase -Xours ONE-46982-mdmac-update-api
+- git rebase ONE-44730_mdmac-paas-operations WIP-44907_mdmac-paas-admin-loader
+- git rebase -Xours ONE-45184-mdmac-msw-removal
+- git rebase -Xours master
+- git checkout ONE-44710-mdm-plugin-refactoring
+- git merge temp
+- git checkout origin/ONE-44710-mdm-plugin-refactoring
+- git add . && git commit -m "save changes"
+- git push origin HEAD --force
+- git push origin HEAD --force-with-lease
+- git push origin HEAD
+- git reset --hard origin/ONE-44185-mdm-datagrid-final
+- git reset --hard remote/origin/ONE-44185-mdm-datagrid-final
+- git rebase -Xours ONE-49530-mdm-config
+- 'ONE-49530: wip'
+- 'ONE-51436: manage all matching config mutations in one place'
+- git checkout fecfad662149b27769a06fd26a2ee9737912df29
+- git remote add origin https://github.com/MatejBransky/ddd-playground.git
+- git fetch saas
+- git checkout ONE-53333-dt-data-preview-imprvmnts saas/main
+- git checkout -b ONE-53333-cherry-pick
+- git checkout -b ONE-53333-cherry-pick saas/main
+- git rebase -Xours master-core
+- 'git commit -m "ONE-53407: wip" --no-verify'
+- git remote add core https://gitlab.ataccama.dev/engineering/src/one/mmm/one-metadata-frontend.git
+- git checkout -b ONE-55315-dt-step-text-selection
+- git push --set-upstream core ONE-55315-dt-step-text-selection
+- 'git commit -m "ONE-54714: remove undefined variable use" --no-verify'
+- git push --set-upstream core ONE-55430-dt-autorenaming-step
+- git rebase -Xours ONE-55315-dt-step-text-selection
+- git rebase ONE-55315-dt-step-text-selection
+- git remote update
+- git fetch origin
+hidecommandlog: false
+ignorewhitespaceindiffview: true
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

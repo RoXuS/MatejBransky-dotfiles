@@ -126,10 +126,10 @@ return {
   },
 
   -- Keep reasonable amount of opened buffers
-  {
-    "axkirillov/hbac.nvim",
-    config = true,
-  },
+  -- {
+  --   "axkirillov/hbac.nvim",
+  --   config = true,
+  -- },
 
   -- Scrollbar
   {
