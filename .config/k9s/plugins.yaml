@@ -57,7 +57,7 @@ plugins:
       - --context
       - $CONTEXT
   log-to-file-jq:
-    shortCut: Ctrl-O
+    shortCut: Ctrl-N
     description: "Save log to file (jq)"
     scopes:
       - po
@@ -65,9 +65,9 @@ plugins:
     background: true
     args:
       - -c
-      - kubectl logs $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line' > $NAME.log
+      - kubectl logs $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line' > $NAME_jq.log
   log-to-file:
-    shortCut: Ctrl-P
+    shortCut: Ctrl-O
     description: "Save log to file"
     scopes:
       - po
