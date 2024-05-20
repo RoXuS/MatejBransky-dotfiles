@@ -401,6 +401,16 @@ local keys = {
       mode = "n",
       shortcut = "<leader>cR",
     },
+    prevRef = {
+      desc = "Prev reference",
+      mode = "n",
+      shortcut = "<M-p>",
+    },
+    nextRef = {
+      desc = "Next reference",
+      mode = "n",
+      shortcut = "<M-n>",
+    },
   },
 }
 

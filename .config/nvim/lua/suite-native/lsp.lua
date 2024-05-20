@@ -24,6 +24,23 @@ return {
       -- then I can map it to the desired one
       keys[#keys + 1] = { my_keys.lsp.hoverInfo.shortcut, vim.lsp.buf.hover, desc = my_keys.lsp.hoverInfo.desc }
 
+      keys[#keys + 1] = {
+        my_keys.lsp.prevRef.shortcut,
+        function()
+          LazyVim.lsp.words.jump(-vim.v.count1)
+        end,
+        has = "documentHighlight",
+        desc = my_keys.lsp.prevRef.desc,
+      }
+      keys[#keys + 1] = {
+        my_keys.lsp.nextRef.shortcut,
+        function()
+          LazyVim.lsp.words.jump(vim.v.count1)
+        end,
+        has = "documentHighlight",
+        desc = my_keys.lsp.nextRef.desc,
+      }
+
       vim.keymap.set(my_keys.lsp.log.mode, my_keys.lsp.log.shortcut, "<Cmd>LspLog<CR>", { desc = my_keys.lsp.log.desc })
       vim.keymap.set(
         my_keys.lsp.log.mode,
