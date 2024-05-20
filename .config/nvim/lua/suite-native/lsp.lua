@@ -46,6 +46,7 @@ return {
       )
     end,
     opts = {
+      inlay_hints = { enabled = false },
       diagnostics = {
         -- disable inline diagnostic messages
         virtual_text = false,
