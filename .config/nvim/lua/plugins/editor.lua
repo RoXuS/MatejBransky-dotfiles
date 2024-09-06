@@ -375,10 +375,11 @@ return {
   },
 
   {
-    "stevearc/conform.nvim",
+    "mfussenegger/nvim-lint",
     opts = {
-      formatters_by_ft = {
-        svg = { "xmlformat" },
+      linters_by_ft = {
+        ["markdown"] = false,
+        ["markdown.mdx"] = false,
       },
     },
   },
