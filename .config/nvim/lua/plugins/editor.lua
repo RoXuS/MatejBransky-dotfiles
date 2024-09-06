@@ -1,5 +1,3 @@
-local INDEX_FILE_PATTERN = "^index%.[^.]+$"
-
 return {
   -- Theme
   {
