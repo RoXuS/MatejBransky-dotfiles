@@ -65,6 +65,13 @@ return {
         ":.GBrowse!<CR>",
         { desc = my_keys.references.copyLineLink.desc, silent = true }
       )
+
+      vim.keymap.set(
+        my_keys.git.fastForward.mode,
+        my_keys.git.fastForward.shortcut,
+        ":G pull --ff-only<CR>",
+        { desc = my_keys.git.fastForward.desc }
+      )
     end,
   },
   -- supports Gitlab connection

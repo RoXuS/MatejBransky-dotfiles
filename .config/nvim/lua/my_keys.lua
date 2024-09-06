@@ -220,6 +220,11 @@ local keys = {
       mode = "n",
       shortcut = "<leader>gq",
     },
+    fastForward = {
+      desc = "Fast-forward",
+      mode = "n",
+      shortcut = "<leader>go",
+    },
   },
 
   --
