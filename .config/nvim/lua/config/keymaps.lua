@@ -66,8 +66,8 @@ vim.keymap.set("n", "K", "5k", { desc = "big move up", remap = false })
 vim.keymap.set("n", "<leader>m", "q", { desc = "Start macro recording", remap = false })
 vim.keymap.set("n", "q", "<Nop>", { remap = false })
 
-which_key.register({
-  ["<leader>d"] = "diffWin",
+which_key.add({
+  { "<leader>d", desc = "diffWin" },
 })
 vim.keymap.set(
   my_keys.misc.diffWin.mode,
