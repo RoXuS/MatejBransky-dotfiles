@@ -46,3 +46,5 @@
   cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [mergetool]
   prompt = false
+[rerere]
+  enabled = true
