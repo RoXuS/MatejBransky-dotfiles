@@ -24,8 +24,6 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "suite-native" },
     { import = "log-mode", enabled = log_mode },
-    -- this allows to override nvim/plugins configs locally with the `<project-dir>/.lazy.lua` file
-    { import = "lazyvim.plugins.extras.lazyrc" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
