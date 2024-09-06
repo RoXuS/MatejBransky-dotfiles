@@ -3,15 +3,6 @@ local my_keys = require("my_keys")
 
 return {
   {
-    "folke/neoconf.nvim",
-    opts = {
-      import = {
-        vscode = false,
-        coc = false,
-      },
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "folke/neoconf.nvim",
