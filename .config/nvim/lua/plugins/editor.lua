@@ -136,7 +136,7 @@ return {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
     opts = {
-      excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
+      excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify", "neo-tree" },
       handlers = {
         -- cursor = false,
       },
