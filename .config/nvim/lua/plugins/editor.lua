@@ -234,7 +234,10 @@ return {
             "filename",
             file_status = false,
             path = 2,
-            shorting_target = 40,
+
+            -- Shortens path to leave 5 spaces in the window
+            -- for other components. (terrible name)
+            shorting_target = 5,
             fmt = function(path)
               local root_path = LazyVim.root.cwd()
 
