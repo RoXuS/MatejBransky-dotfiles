@@ -1,4 +1,3 @@
-local H = require("utils.helpers")
 local my_keys = require("my_keys")
 
 return {
@@ -112,55 +111,24 @@ return {
           filetypes = { "graphql" },
         },
 
-        -- INFO: I moved this to project-specific config files (<project-dir>/.lazy.lua)
-        --
-        -- tsserver = {
-        --   init_options = {
-        --     preferences = {
-        --       importModuleSpecifierPreference = "non-relative",
-        --       importModuleSpecifierEnding = "minimal",
-        --     },
-        --   },
-        -- },
+        vtsls = {
+          settings = {
+            vtsls = {
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = "@styled/typescript-styled-plugin",
+                    location = "/Users/Matej.Bransky/Library/pnpm/global/5/node_modules/@styled/typescript-styled-plugin",
+                    enableForWorkspaceTypeScriptVersions = true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
   },
-  -- INFO: issue with stale diagnostics (https://github.com/pmizio/typescript-tools.nvim/issues/202)
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   ft = { "typescript", "typescriptreact" },
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "neovim/nvim-lspconfig",
-  --   },
-  --   keys = {
-  --     {
-  --       my_keys.lsp.organizeImports.shortcut,
-  --       "<cmd>TSToolsOrganizeImports<CR>",
-  --       desc = my_keys.lsp.organizeImports.desc,
-  --     },
-  --     { my_keys.lsp.renameFile.shortcut, "<cmd>TSToolsRenameFile<CR>", desc = my_keys.lsp.renameFile.desc },
-  --   },
-  --   opts = {
-  --     settings = {
-  --       -- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
-  --       -- "remove_unused_imports"|"organize_imports") -- or string "all"
-  --       -- to include all supported code actions
-  --       -- specify commands exposed as code_actions
-  --       expose_as_code_action = "all",
-  --       -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-  --       -- (see 💅 `styled-components` support section)
-  --       tsserver_plugins = {
-  --         "@styled/typescript-styled-plugin",
-  --       },
-  --       tsserver_file_preferences = {
-  --         includeInlayParameterNameHints = "all",
-  --         includeCompletionsForModuleExports = true,
-  --         quotePreference = "auto",
-  --       },
-  --     },
-  --   },
-  -- },
 
   -- Reduce UI noice
   {
