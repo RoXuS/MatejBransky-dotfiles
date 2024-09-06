@@ -328,6 +328,8 @@ return {
         -- { LazyVim.lualine.pretty_path() },
       }
 
+      table.insert(opts.sections.lualine_y, "fileformat")
+
       return opts
     end,
   },
