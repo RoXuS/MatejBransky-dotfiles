@@ -126,9 +126,8 @@ return {
             [my_keys.telescope.openWindowPicker.shortcut] = function(prompt_bufnr)
               -- Use nvim-window-picker to choose the window by dynamically attaching a function
               local action_set = require("telescope.actions.set")
-              local action_state = require("telescope.actions.state")
-
               local picker = action_state.get_current_picker(prompt_bufnr)
+
               picker.get_selection_window = function(picker)
                 local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
                 -- Unbind after using so next instance of the picker acts normally
@@ -158,7 +157,12 @@ return {
         lsp_definitions = {
           show_line = false,
         },
+        grep_string = {
+          additional_args = { "--hidden" },
+        },
         live_grep = {
+          -- search in dotfiles/dotfolders
+          additional_args = { "--hidden" },
           mappings = {
             i = {
               -- narrow grep search by the other search criteria (filename, extension, other word in the searched file)
