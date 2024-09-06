@@ -225,6 +225,26 @@ local keys = {
       mode = "n",
       shortcut = "<leader>go",
     },
+    traceLineEvolution = {
+      desc = "Trace line evolution",
+      mode = "v",
+      shortcut = "<leader>gv",
+    },
+    uncommitedChanges = {
+      desc = "Uncommited changes",
+      mode = "n",
+      shortcut = "<leader>gu",
+    },
+    review = {
+      desc = "Review PR",
+      mode = "n",
+      shortcut = "<leader>gr",
+    },
+    branchChanges = {
+      desc = "Branch changes",
+      mode = "n",
+      shortcut = "<leader>gp",
+    },
   },
 
   --

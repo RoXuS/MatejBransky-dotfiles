@@ -89,11 +89,34 @@ return {
   {
     "sindrets/diffview.nvim",
     keys = {
-      { my_keys.git.branchHistory.shortcut, ":DiffviewFileHistory<CR>", desc = my_keys.git.branchHistory.desc },
-      { my_keys.git.fileHistory.shortcut, ":DiffviewFileHistory %<CR>", desc = my_keys.git.fileHistory.desc },
+      {
+        my_keys.git.branchHistory.shortcut,
+        ":DiffviewFileHistory<CR>",
+        desc = my_keys.git.branchHistory.desc,
+      },
+      {
+        my_keys.git.fileHistory.shortcut,
+        ":DiffviewFileHistory --no-merges %<CR>",
+        desc = my_keys.git.fileHistory.desc,
+      },
       { my_keys.git.closeHistory.shortcut, ":tabclose<CR>", desc = my_keys.git.closeHistory.desc },
-      { "<leader>gu", ":DiffviewOpen --imply-local<CR>", desc = "Uncommited changes" },
-      { "<leader>gr", ":DiffviewOpen origin/", desc = "Review PR" },
+      {
+        my_keys.git.uncommitedChanges.shortcut,
+        ":DiffviewOpen --imply-local<CR>",
+        desc = my_keys.git.uncommitedChanges.desc,
+      },
+      { my_keys.git.review.shortcut, ":DiffviewOpen origin/", desc = my_keys.git.review.desc },
+      {
+        my_keys.git.branchChanges.shortcut,
+        ":DiffviewOpen origin/HEAD...HEAD<CR>",
+        desc = my_keys.git.branchChanges.desc,
+      },
+      {
+        my_keys.git.traceLineEvolution.shortcut,
+        ":'<,'>DiffviewFileHistory<CR>",
+        desc = my_keys.git.traceLineEvolution.desc,
+        mode = my_keys.git.traceLineEvolution.mode,
+      },
     },
   },
   {
