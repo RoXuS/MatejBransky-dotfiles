@@ -11,7 +11,7 @@ plugins:
     background: false
     args:
       - -c
-      - "kubectl logs -f $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line'"
+      - 'kubectl logs -f $NAME -n $NAMESPACE --context $CONTEXT | jq -rR ''. as $line | try (fromjson | (del(.stack_trace) | del(.message)), "message: " + .message, if .stack_trace then "stack_trace: " + .stack_trace else empty end) catch $line'''
   yqlogs:
     shortCut: Ctrl-Y
     confirm: false
@@ -65,7 +65,7 @@ plugins:
     background: true
     args:
       - -c
-      - kubectl logs $NAME -n $NAMESPACE --context $CONTEXT | jq -SR '. as $line | try (fromjson) catch $line' > $NAME_jq.log
+      - 'kubectl logs $NAME -n $NAMESPACE --context $CONTEXT | jq -rR ''. as $line | try (fromjson | (del(.stack_trace) | del(.message)), "message: " + .message, if .stack_trace then "stack_trace: " + .stack_trace else empty end) catch $line'' > $NAME_jq.log'
   log-to-file:
     shortCut: Ctrl-O
     description: "Save log to file"
