@@ -1,5 +1,34 @@
 local my_keys = require("my_keys")
 
+local gstatus = { ok = false, ahead = 0, behind = 0 }
+local function update_gstatus()
+  local Job = require("plenary.job")
+  Job:new({
+    command = "git",
+    -- git rev-list --count --left-right HEAD...@{upstream}
+    args = { "rev-list", "--left-right", "--count", "HEAD...@{upstream}" },
+    on_exit = function(job, _)
+      local res = job:result()[1]
+      if type(res) ~= "string" then
+        gstatus = { ahead = 0, behind = 0 }
+        return
+      end
+      local ok, ahead, behind = pcall(string.match, res, "(%d+)%s*(%d+)")
+      if not ok then
+        ahead, behind = 0, 0
+      end
+      gstatus = { ok = ok, ahead = ahead, behind = behind }
+    end,
+  }):start()
+end
+
+if _G.Gstatus_timer == nil then
+  _G.Gstatus_timer = vim.loop.new_timer()
+else
+  _G.Gstatus_timer:stop()
+end
+_G.Gstatus_timer:start(0, 2000, vim.schedule_wrap(update_gstatus))
+
 return {
   {
     "tpope/vim-fugitive",
@@ -71,5 +100,16 @@ return {
         desc = "Toggle current line blame",
       },
     },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_c, function()
+        if not gstatus.ok then
+          return ""
+        end
+        return gstatus.ahead .. " " .. gstatus.behind .. ""
+      end)
+    end,
   },
 }
