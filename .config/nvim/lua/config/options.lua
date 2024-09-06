@@ -7,7 +7,7 @@ vim.opt.showtabline = 0 -- Hide tabline
 
 vim.filetype.add({
   extension = {
-    mdx = "markdown",
+    gotmpl = "go",
   },
 })
 
