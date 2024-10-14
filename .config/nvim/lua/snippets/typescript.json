@@ -3,8 +3,22 @@
     "body": "$1: '$1',",
     "prefix": "ck"
   },
+  "ct": {
+    "body": [
+      "import { expect } from '@playwright/test'",
+      "import { testStory as test } from '@ataccama/shared/test-utils/playwright-storybook'",
+      "",
+      "const STORY_PATH = '$1'",
+      "",
+      "test('${2:render}', async ({ story }) => {",
+      "  await story.load(STORY_PATH)",
+      "  ${3:await expect(story.locator.getByText('Hello World!')).toBeVisible()}",
+      "})"
+    ],
+    "prefix": "ct"
+  },
   "tra": {
-    "body": "t({ id: 'datasetTransformations.$2', message: '$1' })",
+    "body": "t({ id: '$2', message: '$1' })",
     "prefix": "tra"
   }
 }

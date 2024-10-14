@@ -5,22 +5,63 @@
       "  $2",
       "}",
       "",
-      "const ${1:MyComp} = (props: $1Props) => {",
+      "const ${1:$TM_FILENAME_BASE} = (props: $1Props) => {",
       "  return $3",
       "}"
     ],
     "prefix": "cc"
   },
   "dt": {
-    "body": "datasetTransformations",
+    "body": "datasetTransformation",
     "prefix": "dt"
   },
   "log": {
     "body": "console.log($1)",
     "prefix": "log"
   },
+  "st": {
+    "body": [
+      "import type { Meta, StoryObj } from '@storybook/react'",
+      "",
+      "import { $1 } from './$1'",
+      "",
+      "const meta: Meta<typeof $1> = {",
+      "  component: $1,",
+      "  title: '$2/$1',",
+      "}",
+      "export default meta",
+      "type Story = StoryObj<typeof $1>",
+      "",
+      "export const Example: Story = {$3}"
+    ],
+    "prefix": "st"
+  },
+  "stt": {
+    "body": [
+      "import { expect } from '@storybook/jest'",
+      "import type { Meta, StoryObj } from '@storybook/react'",
+      "import { within } from '@storybook/testing-library'",
+      "",
+      "import { $1 } from './$1'",
+      "",
+      "const meta: Meta<typeof $1> = {",
+      "  component: $1,",
+      "  title: '$2/$1',",
+      "}",
+      "export default meta",
+      "type Story = StoryObj<typeof $1>",
+      "",
+      "export const Example: Story = {",
+      "  play: async ({ canvasElement }) => {",
+      "    const canvas = within(canvasElement)",
+      "    ${3:await expect(await canvas.findByText('Hello World!')).toBeVisible()}",
+      "  }",
+      "}"
+    ],
+    "prefix": "stt"
+  },
   "tra": {
-    "body": "t({ id: 'datasetTransformations.$2', message: '$1' })",
+    "body": "t({ id: 'datasetTransformation.$2', message: '$1' })",
     "prefix": "tra"
   }
 }

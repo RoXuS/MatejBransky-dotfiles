@@ -111,6 +111,11 @@ return {
           filetypes = { "graphql" },
         },
 
+        -- https://github.com/LazyVim/LazyVim/pull/4406
+        ts_ls = {
+          enabled = false,
+        },
+
         vtsls = {
           settings = {
             vtsls = {
@@ -133,8 +138,6 @@ return {
   -- Reduce UI noice
   {
     "folke/noice.nvim",
-    -- FIXME: https://github.com/folke/noice.nvim/issues/923#issuecomment-2323744060
-    commit = "d9328ef",
     opts = {
       lsp = {
         -- disable auto popup of function documenation
