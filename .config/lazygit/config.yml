@@ -12,19 +12,21 @@ git:
   paging:
     colorArg: always
     useConfig: true
+services:
+  "gitlab.ataccama.dev": "gitlab:gitlab.ataccama.dev"
 customCommands:
   # - key: <c-f>
   #   description: Fetch branch
   #   context: localBranches
   #   command: git fetch origin {{.SelectedLocalBranch.Name}}:{{.SelectedLocalBranch.Name}}
   - key: "<c-b>"
-    description: "Rebase -Xours"
+    description: "Rebase --keep-base"
     context: localBranches
-    command: git rebase -Xours {{.SelectedLocalBranch.Name}}
+    command: git rebase --keep-base {{.SelectedLocalBranch.Name}}
     prompts:
       - type: confirm
         title: Rebase on {{.SelectedLocalBranch.Name}}
-        body: "Are you sure you want to execute: git rebase -Xours {{.SelectedLocalBranch.Name}}?"
+        body: "Are you sure you want to execute: git rebase --keep-base {{.SelectedLocalBranch.Name}}?"
   - key: "<c-n>"
     description: "Commit --no-verify"
     prompts:
@@ -50,3 +52,13 @@ customCommands:
       - type: confirm
         title: "Trims your tracking branches whose upstream branches are merged or stray"
         body: "Are you sure you want to delete local branches whose upstream branches are merged or stray?"
+    stream: true
+  - key: "<c-u>"
+    description: "Force push all branches in your current stack"
+    context: global
+    command: git fpstack
+    prompts:
+      - type: confirm
+        title: Sending git fpstack
+        body: Are you sure you want to push all branches in your current stack?
+    stream: true
