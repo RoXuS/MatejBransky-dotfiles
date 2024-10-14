@@ -37,6 +37,21 @@ alias df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # LazyGit with the dotfiles context
 alias ldf='/opt/homebrew/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+alias atalog="jq -rR '. as \$line | try (fromjson | del(.stack_trace) , .stack_trace) catch \$line'"
+alias ataup="~/projects/saas/update-repos.sh"
+
+alias slice="pnpm nx g @ataccama/nx-utils:slice"
+alias move="pnpm nx g mv"
+
+alias sap="pnpm nx serve:noCheck one-fe"
+alias sdt="pnpm nx serve storybook-dt"
+alias pdt="pnpm nx playwright-test storybook-dt"
+
+alias pm="pnpm"
+alias pi="pnpm install"
+
+alias nvil="NVIM_APPNAME=nvim-lazyvim nvim"
+
 gbd() {
   # https://stackoverflow.com/a/33548037/10735867
   git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done
@@ -70,6 +85,8 @@ function preexec() {
 function precmd() {
     print -Pn "\e]0;%~\a"
 }
+
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
