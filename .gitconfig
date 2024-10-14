@@ -23,6 +23,8 @@
     #     short optionm such that the name prefixes refs/heads/, refs/tags/ and
     #     refs/remotes/ will not be printed.
     dog = "log --graph --decorate --oneline"
+  # Force push all branches in your current stack (source: https://www.codetinkerer.com/2023/10/01/stacked-branches-with-vanilla-git.html)
+	fpstack = "!git log --decorate=short --pretty='format:%D' origin/main.. | sed 's/, /\\n/g; s/HEAD -> //'  | grep -Ev '/|^$' | xargs git push --force-with-lease origin"
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
@@ -48,3 +50,5 @@
   prompt = false
 [rerere]
   enabled = true
+[rebase]
+	updateRefs = true
