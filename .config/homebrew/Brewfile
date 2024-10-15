@@ -1,0 +1,223 @@
+tap "aquaproj/aqua"
+tap "azure/kubelogin"
+tap "cormacrelf/tap"
+tap "derailed/k9s"
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "oven-sh/bun"
+tap "wez/wezterm"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
+# Secure and free password manager for all of your devices
+brew "bitwarden-cli"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Core application library for C
+brew "glib"
+# Package acting as bridge between Node projects and their package managers
+brew "corepack"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# Programming language for highly scalable real-time systems
+brew "erlang"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Terminal JSON viewer
+brew "fx"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Fast, simple fuzzy text selector with an advanced scoring algorithm
+brew "fzy"
+# GitHub command-line tool
+brew "gh"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Extensions to follow Vincent Driessen's branching model
+brew "git-flow"
+# Trim your git remote tracking branches that are merged or gone
+brew "git-trim"
+# Open-source GitLab command-line tool
+brew "glab"
+# Statically typed language for the Erlang VM
+brew "gleam"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Kubernetes package manager
+brew "helm"
+# Deploy Kubernetes Helm Charts
+brew "helmfile"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Network authentication protocol
+brew "krb5"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Kubernetes prompt info for bash and zsh
+brew "kube-ps1"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Terminal file manager
+brew "lf"
+# Powerful, lightweight programming language
+brew "lua"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Apple Silicon Monitor Top written in Golang
+brew "mactop"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Manage multiple Node.js versions
+brew "nvm"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Object-relational database system
+brew "postgresql@14"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Rust toolchain installer
+brew "rustup"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Tool for creating isolated virtual python environments
+brew "virtualenv"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
+brew "wget"
+# Access X11 clipboards from the command-line
+brew "xclip"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# Declarative CLI Version manager. Support Lazy Install and Sharable configuration mechanism named Registry. Switch versions seamlessly
+brew "aquaproj/aqua/aqua"
+# A Kubernetes credential (exec) plugin implementing azure authentication
+brew "azure/kubelogin/kubelogin"
+# Watcher for macOS 10.14+ light/dark mode changes
+brew "cormacrelf/tap/dark-notify"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s"
+# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
+brew "oven-sh/bun/bun"
+# Enable Windows-like alt-tab
+cask "alt-tab"
+# Audio utility
+cask "background-music"
+# Universal database tool and SQL client
+cask "dbeaver-community"
+# Reimagine your terminal
+cask "fig"
+# Open-source keystroke visualiser
+cask "keycastr"
+# App that enables mouse-free UI interaction
+cask "shortcat"
+# Open-source code editor
+cask "visual-studio-code"
+# Tool to run web apps like desktop apps
+cask "webcatalog"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
+vscode "bierner.markdown-mermaid"
+vscode "dangmai.workspace-default-settings"
+vscode "davidanson.vscode-markdownlint"
+vscode "dbaeumer.vscode-eslint"
+vscode "denoland.vscode-deno"
+vscode "donjayamanne.githistory"
+vscode "dsznajder.es7-react-js-snippets"
+vscode "eamodio.gitlens"
+vscode "editorconfig.editorconfig"
+vscode "emeraldwalk.runonsave"
+vscode "esbenp.prettier-vscode"
+vscode "firsttris.vscode-jest-runner"
+vscode "formulahendry.auto-rename-tag"
+vscode "github.copilot"
+vscode "github.copilot-chat"
+vscode "github.github-vscode-theme"
+vscode "github.vscode-pull-request-github"
+vscode "gitlab.gitlab-workflow"
+vscode "grapecity.gc-excelviewer"
+vscode "graphql.vscode-graphql"
+vscode "graphql.vscode-graphql-syntax"
+vscode "gruntfuggly.todo-tree"
+vscode "hashicorp.hcl"
+vscode "hilleer.yaml-plus-json"
+vscode "jock.svg"
+vscode "johnpapa.vscode-peacock"
+vscode "kenhowardpdx.vscode-gist"
+vscode "kumar-harsh.graphql-for-vscode"
+vscode "mariusalchimavicius.json-to-ts"
+vscode "mattpocock.ts-error-translator"
+vscode "mhutchie.git-graph"
+vscode "mike-co.import-sorter"
+vscode "mikestead.dotenv"
+vscode "ml.nc-gcode"
+vscode "monotykamary.inline-yaml"
+vscode "mrmlnc.vscode-json5"
+vscode "mrorz.language-gettext"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+vscode "ms-playwright.playwright"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-wsl"
+vscode "ms-vscode-remote.vscode-remote-extensionpack"
+vscode "ms-vscode.live-server"
+vscode "ms-vscode.remote-explorer"
+vscode "ms-vscode.remote-server"
+vscode "mtxr.sqltools"
+vscode "mtxr.sqltools-driver-pg"
+vscode "naumovs.color-highlight"
+vscode "nhoizey.gremlins"
+vscode "nrwl.angular-console"
+vscode "orta.vscode-jest"
+vscode "pflannery.vscode-versionlens"
+vscode "phoenisx.cssvar"
+vscode "prisma.prisma"
+vscode "redhat.java"
+vscode "redhat.vscode-xml"
+vscode "redhat.vscode-yaml"
+vscode "rust-lang.rust-analyzer"
+vscode "ryanrosello-og.playwright-vscode-trace-viewer"
+vscode "speedy37.ascii-plist"
+vscode "spmeesseman.vscode-taskexplorer"
+vscode "statelyai.stately-vscode"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "styled-components.vscode-styled-components"
+vscode "tsandall.opa"
+vscode "tyriar.luna-paint"
+vscode "uctakeoff.vscode-counter"
+vscode "unifiedjs.vscode-mdx"
+vscode "usernamehw.errorlens"
+vscode "visualstudioexptteam.intellicode-api-usage-examples"
+vscode "visualstudioexptteam.vscodeintellicode"
+vscode "vscjava.vscode-gradle"
+vscode "vscjava.vscode-java-debug"
+vscode "vscjava.vscode-java-dependency"
+vscode "vscjava.vscode-java-pack"
+vscode "vscjava.vscode-java-test"
+vscode "vscjava.vscode-maven"
+vscode "zhuangtongfa.material-theme"
