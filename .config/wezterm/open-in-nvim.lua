@@ -72,11 +72,7 @@ local function extract_filename(uri)
 end
 
 local function get_pwd(pane)
-	-- Url object
-	local pwd_url = pane:get_current_working_dir()
-	local pwd = tostring(pwd_url)
-	pwd = pwd:gsub("^file://", "")
-	return pwd
+  return pane:get_current_working_dir().file_path
 end
 
 local function extract_line_and_name(uri)
